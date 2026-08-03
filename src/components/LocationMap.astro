@@ -139,7 +139,7 @@ const totalProviders = allStates.reduce((sum, s) => sum + getProviderCountByStat
         popupAnchor: [0, -38],
       });
 
-      var marker = L.marker([state.lat, state.lng], { icon: icon }).addTo(map);
+      var marker = L.marker([state.lat, state.lng], { icon: icon, alt: state.name + ' - ' + state.count + ' Life Care Planners' }).addTo(map);
 
       marker.bindPopup(
         '<div style="text-align:center; min-width:130px">' +
