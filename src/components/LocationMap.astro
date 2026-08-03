@@ -139,7 +139,15 @@ const totalProviders = allStates.reduce((sum, s) => sum + getProviderCountByStat
         popupAnchor: [0, -38],
       });
 
-      var marker = L.marker([state.lat, state.lng], { icon: icon, alt: state.name + ' - ' + state.count + ' Life Care Planners' }).addTo(map);
+      var marker = L.marker([state.lat, state.lng], { icon: icon }).addTo(map);
+
+      // Set aria-label on the marker element for accessibility
+      marker.on('add', function() {
+        var el = marker.getElement();
+        if (el) {
+          el.setAttribute('aria-label', state.name + ' - ' + state.count + ' Life Care Planner' + (state.count !== 1 ? 's' : ''));
+        }
+      });
 
       marker.bindPopup(
         '<div style="text-align:center; min-width:130px">' +
