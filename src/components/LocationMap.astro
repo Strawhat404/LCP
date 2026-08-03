@@ -1,0 +1,157 @@
+---
+import { getAllStates, getProviderCountByState } from "../utils/data";
+
+// State centroids (lat/lng) for all US states + Canadian provinces in the dataset
+const stateCentroids: Record<string, [number, number]> = {
+  'alabama':                [32.806671, -86.791130],
+  'alaska':                 [61.370716, -152.404419],
+  'arizona':                [33.729759, -111.431221],
+  'arkansas':               [34.969704, -92.373123],
+  'california':             [36.116203, -119.681564],
+  'colorado':               [39.059811, -105.311104],
+  'connecticut':            [41.597782, -72.755371],
+  'delaware':               [39.318523, -75.507141],
+  'florida':                [27.766279, -81.686783],
+  'georgia':                [33.040619, -83.643074],
+  'hawaii':                 [21.094318, -157.498337],
+  'idaho':                  [44.240459, -114.478828],
+  'illinois':               [40.349457, -88.986137],
+  'indiana':                [39.849426, -86.258278],
+  'iowa':                   [42.011539, -93.210526],
+  'kansas':                 [38.526600, -96.726486],
+  'kentucky':               [37.668140, -84.670067],
+  'louisiana':              [31.169960, -91.867805],
+  'maine':                  [44.693947, -69.381927],
+  'maryland':               [39.063946, -76.802101],
+  'massachusetts':          [42.230171, -71.530106],
+  'michigan':               [43.326618, -84.536095],
+  'minnesota':              [45.694454, -93.900192],
+  'mississippi':            [32.741646, -89.678696],
+  'missouri':               [38.456085, -92.288368],
+  'montana':                [46.921925, -110.454353],
+  'nebraska':               [41.125370, -98.268082],
+  'nevada':                 [38.313515, -117.055374],
+  'new-hampshire':          [43.452492, -71.563896],
+  'new-jersey':             [40.298904, -74.521011],
+  'new-mexico':             [34.840515, -106.248482],
+  'new-york':               [42.165726, -74.948051],
+  'north-carolina':         [35.630066, -79.806419],
+  'north-dakota':           [47.528912, -99.784012],
+  'ohio':                   [40.388783, -82.764915],
+  'oklahoma':               [35.565342, -96.928917],
+  'oregon':                 [44.572021, -122.070938],
+  'pennsylvania':           [40.590752, -77.209755],
+  'rhode-island':           [41.680893, -71.511780],
+  'south-carolina':         [33.856892, -80.945007],
+  'south-dakota':           [44.299782, -99.438828],
+  'tennessee':              [35.747845, -86.692345],
+  'texas':                  [31.054487, -97.563461],
+  'utah':                   [40.150032, -111.862434],
+  'vermont':                [44.045876, -72.710686],
+  'virginia':               [37.769337, -78.169968],
+  'washington':             [47.400902, -121.490494],
+  'west-virginia':          [38.491226, -80.954453],
+  'wisconsin':              [44.268543, -89.616508],
+  'wyoming':                [42.755966, -107.302490],
+  'district-of-columbia':   [38.897438, -77.026817],
+  // Canadian provinces
+  'alberta':                [53.933271, -116.576503],
+  'british-columbia':       [53.726669, -127.647621],
+  'ontario':                [51.253775, -85.323214],
+  'quebec':                 [52.939916, -73.549136],
+  'new-brunswick':          [46.565826, -66.461914],
+  'nova-scotia':            [44.681988, -63.744311],
+  'newfoundland-and-labrador': [53.135509, -57.660435],
+  'manitoba':               [53.760860, -98.813873],
+  'saskatchewan':           [52.939916, -106.450860],
+};
+
+const allStates = getAllStates();
+const markerData = allStates
+  .filter(slug => stateCentroids[slug])
+  .map(slug => {
+    const [lat, lng] = stateCentroids[slug];
+    const count = getProviderCountByState(slug);
+    const name = slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    return { slug, name, lat, lng, count };
+  });
+
+const totalProviders = allStates.reduce((sum, s) => sum + getProviderCountByState(s), 0);
+---
+
+<div class="location-map-container">
+  <!-- Stats bar -->
+  <div class="flex flex-wrap gap-6 justify-center mb-4">
+    <div class="text-center">
+      <div class="text-2xl font-bold text-brand-700">{totalProviders}</div>
+      <div class="text-xs text-gray-500">Total Providers</div>
+    </div>
+    <div class="text-center">
+      <div class="text-2xl font-bold text-brand-700">{markerData.length}</div>
+      <div class="text-xs text-gray-500">States & Provinces</div>
+    </div>
+    <div class="text-center">
+      <div class="text-2xl font-bold text-brand-700">USA + CA</div>
+      <div class="text-xs text-gray-500">Coverage Area</div>
+    </div>
+  </div>
+
+  <!-- Map container -->
+  <div id="lcp-map" class="w-full rounded-lg overflow-hidden border border-gray-200" style="height: 420px;"></div>
+
+  <p class="text-center text-xs text-gray-400 mt-2">
+    Marker size reflects number of Life Care Planners. Click a marker to browse that state.
+  </p>
+</div>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<script define:vars={{ markerData }}>
+  // Dynamically load Leaflet JS then init map
+  var script = document.createElement('script');
+  script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  script.onload = function() {
+    var map = L.map('lcp-map', {
+      center: [39.5, -98.35],
+      zoom: 4,
+      scrollWheelZoom: false,
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+    }).addTo(map);
+
+    markerData.forEach(function(state) {
+      // Custom SVG pin icon
+      var pinSvg =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="38" viewBox="0 0 28 38">' +
+          '<path d="M14 0C6.268 0 0 6.268 0 14c0 9.625 14 24 14 24S28 23.625 28 14C28 6.268 21.732 0 14 0z" fill="#2563eb" stroke="#1e40af" stroke-width="1.5"/>' +
+          '<circle cx="14" cy="14" r="6" fill="white"/>' +
+        '</svg>';
+
+      var icon = L.divIcon({
+        html: pinSvg,
+        className: '',
+        iconSize: [28, 38],
+        iconAnchor: [14, 38],
+        popupAnchor: [0, -38],
+      });
+
+      var marker = L.marker([state.lat, state.lng], { icon: icon }).addTo(map);
+
+      marker.bindPopup(
+        '<div style="text-align:center; min-width:130px">' +
+        '<strong style="font-size:14px">' + state.name + '</strong><br>' +
+        '<span style="color:#2563eb; font-size:18px; font-weight:bold">' + state.count + '</span>' +
+        '<span style="color:#6b7280; font-size:12px"> LCP' + (state.count !== 1 ? 's' : '') + '</span><br>' +
+        '<a href="/' + state.slug + '" style="color:#2563eb; font-size:12px; text-decoration:underline">Browse ' + state.name + ' →</a>' +
+        '</div>'
+      );
+
+      marker.on('mouseover', function() { this.openPopup(); });
+    });
+  };
+  document.head.appendChild(script);
+</script>

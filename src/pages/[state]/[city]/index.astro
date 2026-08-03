@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import ProviderCard from "../../../components/ProviderCard.astro";
+import { getAllStates, getCitiesByState, getProvidersByCity } from "../../../utils/data";
+
+export function getStaticPaths() {
+  const paths: { params: { state: string; city: string } }[] = [];
+  for (const state of getAllStates()) {
+    for (const city of getCitiesByState(state)) {
+      paths.push({ params: { state, city } });
+    }
+  }
+  return paths;
+}
+
+const { state, city } = Astro.params;
+
+const stateDisplay = state!.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+const cityDisplay = city!.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+const providers = getProvidersByCity(state!, city!);
+---
+
+<BaseLayout
+  title={`Life Care Planners in ${cityDisplay}, ${stateDisplay}`}
+  description={`Find qualified Life Care Planners in ${cityDisplay}, ${stateDisplay}. Browse profiles and contact information.`}
+>
+  <Header />
+
+  <main class="flex-1">
+    <div class="page-container section-padding">
+      <Breadcrumb
+        links={[
+          { label: "Home", href: "/" },
+          { label: stateDisplay, href: `/${state}` },
+          { label: cityDisplay, href: `/${state}/${city}` },
+        ]}
+      />
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">
+        Life Care Planners in {cityDisplay}, {stateDisplay}
+      </h1>
+      <p class="text-gray-600 mb-8">
+        Showing {providers.length} Life Care Planner{providers.length !== 1 ? "s" : ""} in the {cityDisplay} area.
+      </p>
+
+      <div class="space-y-3">
+        {providers.map((provider) => (
+          <ProviderCard provider={provider} />
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

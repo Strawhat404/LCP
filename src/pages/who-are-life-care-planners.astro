@@ -1,0 +1,194 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const plannerTypes = [
+  {
+    title: "Certified Life Care Planners (CLCP)",
+    cert: "CLCP",
+    desc: "Professionals certified through the International Commission on Health Care Certification (ICHCC). They demonstrate expertise in building comprehensive, evidence-based life care plans used in legal, insurance, and clinical settings."
+  },
+  {
+    title: "Certified Nurse Life Care Planners (CNLCP)",
+    cert: "CNLCP",
+    desc: "Registered nurses with specialized training in life care planning. They bring direct clinical nursing knowledge to the long-term assessment of medical care, medication management, and care coordination needs."
+  },
+  {
+    title: "Physician Life Care Planners",
+    cert: "MD / DO",
+    desc: "Medical doctors who apply their clinical understanding of diagnosis, disease progression, and treatment protocols to develop medically grounded life care plans."
+  },
+  {
+    title: "Rehabilitation Counselors",
+    cert: "CRC",
+    desc: "Certified Rehabilitation Counselors who bring expertise in vocational rehabilitation and disability management. They help address functional limitations, return-to-work considerations, and community reintegration."
+  },
+  {
+    title: "Occupational Therapists",
+    cert: "OT/L",
+    desc: "Licensed OT professionals who specialize in evaluating daily living needs, adaptive equipment requirements, and home modification recommendations as part of a comprehensive life care plan."
+  },
+  {
+    title: "Physical Therapists",
+    cert: "PT",
+    desc: "Physical therapists who contribute expertise in mobility, pain management, orthotics, prosthetics, and long-term rehabilitation planning for individuals with physical injuries or conditions."
+  },
+];
+
+const faqs = [
+  {
+    q: "What is a life care planner's professional role?",
+    a: "Life care planners are rehabilitation professionals who also serve as educators. Their work centers on assessment, documentation, and clear communication of long-term care needs — not direct treatment. They translate clinical findings into organized, defensible plans."
+  },
+  {
+    q: "How do standards of practice guide life care planners?",
+    a: "Standards of practice outline core responsibilities, ethical duties, and required planning steps. They help ensure consistency and methodical quality across different practitioners and case types."
+  },
+  {
+    q: "Why is collaboration important for life care planners?",
+    a: "Planners regularly communicate with treating physicians, therapists, and other clinicians to clarify findings and verify recommendations. Collaboration produces more accurate and realistic long-term projections."
+  },
+  {
+    q: "How do life care planners handle regional differences?",
+    a: "Plans account for variations in available services, vendors, and costs by region. This keeps cost projections and service recommendations relevant to where the individual actually lives and receives care."
+  },
+  {
+    q: "How did the life care planning specialty develop?",
+    a: "Life care planning grew out of rehabilitation and case management practices over several decades. The field was formalized through training programs, professional handbooks, and published standards of practice that continue to evolve today."
+  },
+  {
+    q: "What makes a life care planner's recommendation trustworthy?",
+    a: "Trustworthy recommendations are tied directly to individual assessment data, grounded in published clinical guidelines, and detailed enough to specify frequency, duration, and context. Vague or generic recommendations do not meet professional standards."
+  },
+  {
+    q: "Can any healthcare professional become a life care planner?",
+    a: "Life care planners typically come from rehabilitation-related backgrounds such as nursing, medicine, occupational therapy, physical therapy, or counseling. Specialized certification through ICHCC or similar bodies demonstrates additional competency in the planning process."
+  },
+];
+---
+
+<BaseLayout
+  title="Who Are Life Care Planners? Types, Roles & Qualifications"
+  description="Learn about the types of Life Care Planners, their professional backgrounds, certifications, and how they develop long-term care plans for injured or disabled individuals."
+>
+  <Header />
+
+  <main class="flex-1">
+    <!-- Hero -->
+    <section class="bg-brand-900 text-white">
+      <div class="page-container py-12 text-center">
+        <h1 class="text-3xl sm:text-4xl font-bold">Who Are Life Care Planners?</h1>
+        <p class="mt-3 text-brand-200 max-w-2xl mx-auto">
+          Life Care Planners are rehabilitation professionals who document long-term care needs for individuals
+          with serious injuries, disabilities, or chronic conditions.
+        </p>
+      </div>
+    </section>
+
+    <div class="page-container section-padding">
+      <div class="max-w-3xl mx-auto">
+
+        <!-- Intro -->
+        <div class="bg-brand-50 border border-brand-100 rounded-xl p-6 mb-10">
+          <p class="text-gray-700 leading-relaxed text-lg">
+            A Life Care Planner is a healthcare professional trained to assess, research, and document
+            the lifetime medical, therapeutic, and support needs of individuals affected by catastrophic injury
+            or chronic illness. They serve as both clinicians and educators — translating complex medical
+            information into clear, actionable plans used in legal, insurance, and care coordination contexts.
+          </p>
+        </div>
+
+        <!-- Planner types -->
+        <h2 class="text-2xl font-bold text-gray-900 mb-5">Types of Life Care Planners</h2>
+        <div class="space-y-4 mb-12">
+          {plannerTypes.map(p => (
+            <div class="flex gap-4 p-5 border border-gray-200 rounded-xl bg-white hover:border-brand-300 transition-colors">
+              <div class="flex-shrink-0 w-14 h-14 bg-brand-100 rounded-lg flex items-center justify-center">
+                <span class="text-xs font-bold text-brand-700 text-center leading-tight">{p.cert}</span>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900">{p.title}</h3>
+                <p class="text-sm text-gray-600 mt-1 leading-relaxed">{p.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Certifications quick reference -->
+        <div class="bg-gray-50 rounded-xl p-6 mb-12 border border-gray-200">
+          <h2 class="text-lg font-bold text-gray-900 mb-4">Common Certifications at a Glance</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {[
+              ["CLCP", "Certified Life Care Planner (ICHCC)"],
+              ["CNLCP", "Certified Nurse Life Care Planner"],
+              ["CRC", "Certified Rehabilitation Counselor"],
+              ["CDMS", "Certified Disability Management Specialist"],
+              ["CCM", "Certified Case Manager"],
+              ["OT/L", "Licensed Occupational Therapist"],
+              ["PT", "Licensed Physical Therapist"],
+              ["A-CLCP", "Associate Certified Life Care Planner"],
+            ].map(([code, label]) => (
+              <div class="flex items-center gap-3">
+                <span class="inline-block bg-brand-700 text-white text-xs font-bold px-2 py-1 rounded min-w-[56px] text-center">{code}</span>
+                <span class="text-sm text-gray-700">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+        <div class="space-y-3">
+          {faqs.map((item, i) => (
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <button
+                class="faq-btn w-full text-left px-5 py-4 flex items-center justify-between gap-3 bg-white hover:bg-brand-50 transition-colors"
+                aria-expanded="false"
+                data-index={i}
+              >
+                <span class="font-medium text-gray-800">{item.q}</span>
+                <svg class="faq-icon flex-shrink-0 w-5 h-5 text-brand-600 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+              <div class="faq-answer hidden px-5 pb-4 pt-1 bg-white text-gray-600 leading-relaxed text-sm border-t border-gray-100">
+                {item.a}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-12 p-6 bg-brand-50 border border-brand-200 rounded-xl text-center">
+          <h3 class="text-lg font-semibold text-brand-900 mb-2">Find a Qualified Life Care Planner</h3>
+          <p class="text-gray-700 mb-4">Browse our directory to connect with certified professionals in your state.</p>
+          <a href="/locations" class="btn-primary text-sm">Browse by State</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('.faq-icon') as HTMLElement;
+      const isOpen = !answer.classList.contains('hidden');
+
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-180'));
+      document.querySelectorAll('.faq-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+      if (!isOpen) {
+        answer.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>

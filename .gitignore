@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+scripts/venv/
+
+# Astro
+.astro/
+
+# Logs
+*.log
+
+# Markdown docs (internal)
+*.md
+!README.md
+
+# Excel / CSV data files
+*.xlsx
+*.xls
+*.csv
+
+# Lock files (optional — remove if you want to commit them)
+package-lock.json

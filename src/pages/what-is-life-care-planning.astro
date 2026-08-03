@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="What is Life Care Planning? - Complete Guide"
+  description="Learn what life care planning is, how it works, and why it matters. A comprehensive guide to life care plans for personal injury, medical malpractice, and disability cases."
+>
+  <Header />
+
+  <main class="flex-1">
+    <div class="page-container section-padding">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">What is Life Care Planning?</h1>
+
+        <div class="prose prose-gray max-w-none">
+          <p class="text-lg text-gray-600 leading-relaxed">
+            Life Care Planning is a comprehensive approach to assessing and documenting the long-term 
+            medical and support needs of individuals who have experienced catastrophic injuries, chronic 
+            illnesses, or permanent disabilities.
+          </p>
+
+          <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-3">What is a Life Care Plan?</h2>
+          <p>
+            A Life Care Plan (LCP) is a detailed, comprehensive document that outlines the future medical 
+            care, rehabilitation, support services, and associated costs for an individual throughout their 
+            lifetime. It serves as a roadmap for the care and treatment that will be needed as a result of 
+            an injury or medical condition.
+          </p>
+
+          <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-3">When is Life Care Planning Used?</h2>
+          <ul class="space-y-2">
+            <li><strong>Personal Injury Cases</strong> — Documenting future medical needs and costs after accidents</li>
+            <li><strong>Medical Malpractice</strong> — Assessing long-term care requirements resulting from medical errors</li>
+            <li><strong>Workers' Compensation</strong> — Determining ongoing medical support for workplace injuries</li>
+            <li><strong>Divorce & Matrimonial</strong> — Evaluating long-term care costs for disabled spouses</li>
+            <li><strong>Disability Cases</strong> — Supporting Social Security and VA disability claims</li>
+          </ul>
+
+          <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-3">What Does a Life Care Plan Include?</h2>
+          <ul class="space-y-2">
+            <li>Projected medical treatments and procedures</li>
+            <li>Rehabilitation services and therapy needs</li>
+            <li>Medication and pharmaceutical requirements</li>
+            <li>Home care and nursing assistance</li>
+            <li>Adaptive equipment and assistive technology</li>
+            <li>Transportation and accessibility modifications</li>
+            <li>Cost projections and timeline estimates</li>
+          </ul>
+
+          <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-3">Why is Life Care Planning Important?</h2>
+          <p>
+            A well-prepared Life Care Plan provides objective, defensible documentation of future care needs 
+            and costs. It helps attorneys, insurance companies, and courts understand the full scope of care 
+            required, ensuring that individuals receive appropriate compensation and support for their 
+            long-term needs.
+          </p>
+
+          <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-5">Common Questions</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose mb-10">
+            {[
+              { q: "What guides life care planning?", a: "Plans are built on published standards of practice, clinical experience, and peer-reviewed guidelines — keeping recommendations consistent and grounded in accepted rehabilitation principles." },
+              { q: "What makes a plan 'dynamic'?", a: "Life care plans can be updated as new assessments, treatments, or technologies emerge, keeping the roadmap aligned with current clinical realities rather than a single point in time." },
+              { q: "How are costs calculated?", a: "Planners consider the full cost of each recommendation including frequency, replacement cycles, and maintenance — using regional cost data to keep projections realistic." },
+              { q: "How often are plans updated?", a: "Updates are recommended whenever health status, available services, or relevant technologies change in meaningful ways to keep the document current and accurate." },
+            ].map(item => (
+              <div class="border border-gray-200 rounded-xl p-5 bg-white">
+                <p class="font-semibold text-brand-800 mb-2 text-sm">{item.q}</p>
+                <p class="text-gray-600 text-sm leading-relaxed">{item.a}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-10 p-6 bg-brand-50 border border-brand-200 rounded-lg">
+            <h3 class="text-lg font-semibold text-brand-900 mb-2">Need a Life Care Planner?</h3>
+            <p class="text-gray-700 mb-4">Browse our directory to find a qualified Life Care Planner in your state.</p>
+            <a href="/locations" class="btn-primary text-sm">Find a Life Care Planner</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

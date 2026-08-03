@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import USAMap from "../components/USAMapSVG.astro";
+import { getAllStates, getProviderCountByState } from "../utils/data";
+
+const states = getAllStates().map((state) => ({
+  slug: state,
+  name: state.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
+  count: getProviderCountByState(state),
+}));
+---
+
+<BaseLayout
+  title="Life Care Planners by State - Find LCPs Near You"
+  description="Browse our directory of Life Care Planners organized by state. Click on your state to find qualified professionals in major metro cities."
+>
+  <Header />
+
+  <main class="flex-1">
+    <section class="bg-brand-900 text-white">
+      <div class="page-container py-12 text-center">
+        <h1 class="text-3xl sm:text-4xl font-bold">Life Care Planners by State</h1>
+        <p class="mt-3 text-brand-200">Click on a state to find Life Care Planners in your area.</p>
+      </div>
+    </section>
+
+    <div class="page-container section-padding">
+      <div class="mb-10">
+        <USAMap states={states} />
+      </div>
+
+      <!-- Info section replacing the state boxes -->
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+        <!-- What is a Life Care Planner -->
+        <div class="bg-brand-50 border border-brand-100 rounded-xl p-6">
+          <h2 class="text-xl font-bold text-brand-900 mb-3">What is a Life Care Planner?</h2>
+          <p class="text-gray-700 leading-relaxed mb-3">
+            A Life Care Planner (LCP) is a specialized healthcare professional who develops comprehensive,
+            evidence-based plans that detail the future medical, therapeutic, and supportive needs of individuals
+            with catastrophic injuries or chronic health conditions.
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            These plans are used in legal proceedings, insurance settlements, and long-term care coordination
+            to ensure injured or ill individuals receive appropriate and adequate care throughout their lifetime.
+          </p>
+          <a href="/what-is-life-care-planning" class="inline-block mt-4 text-brand-700 font-medium hover:text-brand-900 transition-colors">
+            Learn more about Life Care Planning →
+          </a>
+        </div>
+
+        <!-- Who needs an LCP -->
+        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+          <h2 class="text-xl font-bold text-gray-900 mb-3">Who Needs a Life Care Planner?</h2>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-start gap-2">
+              <span class="mt-1 w-2 h-2 rounded-full bg-brand-500 flex-shrink-0"></span>
+              <span><strong>Personal injury attorneys</strong> seeking expert witnesses and documented cost projections for litigation</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 w-2 h-2 rounded-full bg-brand-500 flex-shrink-0"></span>
+              <span><strong>Insurance companies</strong> needing objective future care cost assessments for settlements</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 w-2 h-2 rounded-full bg-brand-500 flex-shrink-0"></span>
+              <span><strong>Families and caregivers</strong> coordinating long-term care for loved ones with complex needs</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 w-2 h-2 rounded-full bg-brand-500 flex-shrink-0"></span>
+              <span><strong>Healthcare providers</strong> transitioning patients from acute care to community-based living</span>
+            </li>
+          </ul>
+          <a href="/who-are-life-care-planners" class="inline-block mt-4 text-brand-700 font-medium hover:text-brand-900 transition-colors">
+            Meet our Life Care Planners →
+          </a>
+        </div>
+
+        <!-- Stats bar -->
+        <div class="md:col-span-2 bg-brand-900 rounded-xl p-6 text-white">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+            <div>
+              <div class="text-3xl font-bold text-white">964</div>
+              <div class="text-brand-200 text-sm mt-1">Qualified Planners</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-white">{states.length}</div>
+              <div class="text-brand-200 text-sm mt-1">States & Provinces</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-white">USA</div>
+              <div class="text-brand-200 text-sm mt-1">& Canada Coverage</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-white">Free</div>
+              <div class="text-brand-200 text-sm mt-1">Directory Access</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
