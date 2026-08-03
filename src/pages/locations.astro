@@ -19,8 +19,15 @@ const states = getAllStates().map((state) => ({
   <Header />
 
   <main class="flex-1">
-    <section class="bg-brand-900 text-white">
-      <div class="page-container py-12 text-center">
+    <section class="relative bg-brand-900 text-white overflow-hidden">
+      <div class="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80&auto=format&fit=crop"
+          alt="USA map and locations"
+          class="w-full h-full object-cover opacity-20"
+        />
+      </div>
+      <div class="relative page-container py-12 text-center">
         <h1 class="text-3xl sm:text-4xl font-bold">Life Care Planners by State</h1>
         <p class="mt-3 text-brand-200">Click on a state to find Life Care Planners in your area.</p>
       </div>
