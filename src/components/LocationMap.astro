@@ -159,6 +159,15 @@ const totalProviders = allStates.reduce((sum, s) => sum + getProviderCountByStat
       );
 
       marker.on('mouseover', function() { this.openPopup(); });
+
+      // Accessibility: set aria-label after element is in DOM
+      setTimeout(function() {
+        var el = marker.getElement();
+        if (el) {
+          el.setAttribute('aria-label', state.name + ' — ' + state.count + (state.count !== 1 ? ' Life Care Planners' : ' Life Care Planner'));
+          el.setAttribute('title', state.name + ' — ' + state.count + (state.count !== 1 ? ' LCPs' : ' LCP'));
+        }
+      }, 100);
     });
   };
   document.head.appendChild(script);
