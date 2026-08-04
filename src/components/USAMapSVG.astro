@@ -1,4 +1,6 @@
 ---
+import { statePaths } from '../data/statePaths';
+
 interface StateInfo {
   slug: string;
   name: string;
@@ -12,123 +14,40 @@ interface Props {
 const { states } = Astro.props;
 
 const stateDataMap = new Map(states.map(s => [s.slug, s]));
-
-const stateCodeToSlug: Record<string, string> = {
-  AL: 'alabama', AK: 'alaska', AZ: 'arizona', AR: 'arkansas',
-  CA: 'california', CO: 'colorado', CT: 'connecticut', DE: 'delaware',
-  FL: 'florida', GA: 'georgia', HI: 'hawaii', ID: 'idaho',
-  IL: 'illinois', IN: 'indiana', IA: 'iowa', KS: 'kansas',
-  KY: 'kentucky', LA: 'louisiana', ME: 'maine', MD: 'maryland',
-  MA: 'massachusetts', MI: 'michigan', MN: 'minnesota', MS: 'mississippi',
-  MO: 'missouri', MT: 'montana', NE: 'nebraska', NV: 'nevada',
-  NH: 'new-hampshire', NJ: 'new-jersey', NM: 'new-mexico', NY: 'new-york',
-  NC: 'north-carolina', ND: 'north-dakota', OH: 'ohio', OK: 'oklahoma',
-  OR: 'oregon', PA: 'pennsylvania', RI: 'rhode-island',
-  SC: 'south-carolina', SD: 'south-dakota', TN: 'tennessee',
-  TX: 'texas', UT: 'utah', VT: 'vermont', VA: 'virginia',
-  WA: 'washington', WV: 'west-virginia', WI: 'wisconsin', WY: 'wyoming',
-  DC: 'district-of-columbia',
-};
-
-// Real US Albers projection paths (Natural Earth / US Census simplified)
-const statePaths: Record<string, string> = {
-  AL: "M 596 352 L 588 352 L 578 351 L 574 398 L 571 415 L 591 415 L 592 432 L 612 432 L 613 407 L 614 388 L 614 354 Z",
-  AK: "M 112 393 L 94 387 L 75 388 L 61 395 L 53 407 L 57 419 L 71 428 L 87 430 L 98 424 L 109 413 Z",
-  AZ: "M 203 290 L 188 291 L 179 292 L 167 369 L 174 370 L 248 371 L 249 338 L 249 309 L 249 292 Z",
-  AR: "M 540 305 L 517 305 L 503 307 L 502 332 L 499 352 L 539 352 L 556 352 L 558 329 L 557 308 Z",
-  CA: "M 130 157 L 119 172 L 110 199 L 103 225 L 99 259 L 111 281 L 131 294 L 152 291 L 167 291 L 167 369 L 179 292 L 188 291 L 203 290 L 196 250 L 187 212 L 172 179 L 157 152 Z",
-  CO: "M 302 245 L 249 245 L 249 292 L 249 309 L 249 338 L 357 338 L 358 291 L 358 245 Z",
-  CT: "M 744 168 L 732 163 L 725 174 L 727 184 L 743 183 Z",
-  DE: "M 722 198 L 719 210 L 728 214 L 734 204 L 730 196 Z",
-  FL: "M 614 388 L 613 407 L 612 432 L 621 448 L 633 461 L 645 470 L 660 476 L 672 467 L 680 454 L 676 437 L 658 424 L 648 410 L 638 395 L 627 385 Z",
-  GA: "M 649 332 L 617 331 L 614 354 L 614 388 L 627 385 L 638 395 L 648 410 L 658 424 L 672 411 L 680 395 L 672 365 L 672 346 L 662 334 Z",
-  HI: "M 266 430 L 255 425 L 248 430 L 252 438 L 262 439 Z",
-  ID: "M 214 119 L 208 142 L 202 162 L 200 186 L 216 196 L 234 196 L 246 193 L 256 180 L 258 163 L 252 141 L 247 121 Z",
-  IL: "M 568 228 L 553 226 L 543 232 L 536 252 L 534 277 L 539 299 L 542 305 L 558 304 L 567 290 L 571 265 L 572 244 Z",
-  IN: "M 602 228 L 586 227 L 574 228 L 568 228 L 572 244 L 571 265 L 567 290 L 568 305 L 582 305 L 595 299 L 604 279 L 606 258 Z",
-  IA: "M 516 206 L 499 208 L 483 210 L 474 227 L 481 241 L 496 247 L 519 248 L 537 247 L 543 232 L 534 216 Z",
-  KS: "M 430 280 L 361 278 L 358 291 L 358 338 L 431 337 L 464 336 L 467 305 L 468 279 Z",
-  KY: "M 647 280 L 625 277 L 598 274 L 581 276 L 568 277 L 568 290 L 567 290 L 568 305 L 582 305 L 595 299 L 604 279 L 622 286 L 636 292 L 651 292 L 659 287 Z",
-  LA: "M 540 367 L 516 367 L 504 371 L 499 381 L 500 395 L 510 404 L 522 408 L 536 403 L 548 393 L 554 378 L 556 364 Z",
-  ME: "M 773 118 L 762 110 L 752 114 L 745 128 L 751 143 L 762 148 L 774 143 L 780 131 Z",
-  MD: "M 714 213 L 700 210 L 692 214 L 685 222 L 692 231 L 703 234 L 714 231 L 722 224 Z",
-  MA: "M 762 155 L 748 152 L 738 157 L 736 168 L 744 168 L 756 167 L 764 160 Z",
-  MI: "M 600 162 L 586 155 L 574 160 L 568 173 L 574 184 L 588 189 L 600 185 L 608 174 Z",
-  MN: "M 504 139 L 488 138 L 472 142 L 466 160 L 465 180 L 474 193 L 483 202 L 499 205 L 516 206 L 524 195 L 522 172 L 515 153 Z",
-  MS: "M 573 351 L 556 352 L 539 352 L 539 370 L 538 390 L 542 408 L 558 412 L 570 403 L 574 385 L 574 370 Z",
-  MO: "M 543 260 L 537 247 L 519 248 L 496 247 L 481 253 L 474 268 L 477 287 L 489 299 L 502 307 L 517 305 L 540 305 L 557 308 L 558 291 L 560 271 L 553 260 Z",
-  MT: "M 290 120 L 248 120 L 214 119 L 212 148 L 214 174 L 234 186 L 246 193 L 258 186 L 286 184 L 312 182 L 333 168 L 341 147 L 336 128 Z",
-  NE: "M 432 240 L 412 239 L 390 240 L 358 240 L 358 245 L 358 291 L 361 278 L 430 280 L 467 279 L 469 256 L 466 241 Z",
-  NV: "M 196 186 L 179 192 L 162 213 L 152 241 L 153 266 L 163 283 L 175 290 L 188 291 L 203 290 L 210 265 L 214 234 L 213 205 Z",
-  NH: "M 753 136 L 745 128 L 740 140 L 736 155 L 736 168 L 748 165 L 752 152 L 756 143 Z",
-  NJ: "M 732 196 L 726 190 L 719 190 L 715 199 L 716 211 L 722 213 L 730 207 Z",
-  NM: "M 249 292 L 249 338 L 249 371 L 298 371 L 320 371 L 320 338 L 322 299 L 320 292 Z",
-  NY: "M 724 158 L 700 152 L 677 155 L 667 163 L 666 176 L 674 185 L 688 190 L 704 193 L 718 191 L 728 184 L 730 174 Z",
-  NC: "M 700 286 L 676 279 L 654 280 L 642 284 L 628 287 L 620 296 L 625 307 L 638 315 L 655 318 L 673 315 L 690 307 L 704 298 Z",
-  ND: "M 432 139 L 404 138 L 370 138 L 340 140 L 336 163 L 341 180 L 360 182 L 390 183 L 415 181 L 434 171 L 436 154 Z",
-  OH: "M 640 222 L 621 220 L 607 224 L 602 228 L 606 258 L 604 279 L 610 287 L 625 287 L 640 285 L 648 272 L 650 252 L 647 236 Z",
-  OK: "M 430 304 L 431 337 L 358 338 L 320 338 L 320 360 L 321 373 L 358 375 L 393 375 L 436 375 L 468 373 L 470 349 L 470 322 L 468 305 L 467 305 L 464 304 Z",
-  OR: "M 196 148 L 169 148 L 143 148 L 131 157 L 133 176 L 143 186 L 157 188 L 173 182 L 196 186 L 213 178 L 214 160 L 214 148 Z",
-  PA: "M 714 193 L 690 188 L 667 188 L 660 196 L 660 210 L 668 218 L 683 222 L 700 221 L 714 216 L 720 208 Z",
-  RI: "M 749 171 L 743 168 L 740 174 L 742 181 L 748 180 Z",
-  SC: "M 686 313 L 668 307 L 655 308 L 649 318 L 648 333 L 654 341 L 666 345 L 678 341 L 688 330 L 692 319 Z",
-  SD: "M 432 182 L 415 181 L 390 183 L 360 182 L 358 220 L 358 240 L 390 240 L 412 239 L 432 240 L 445 229 L 446 205 L 436 190 Z",
-  TN: "M 618 306 L 596 304 L 567 305 L 558 307 L 556 320 L 558 331 L 575 334 L 595 334 L 617 331 L 631 327 L 641 318 L 638 308 Z",
-  TX: "M 357 338 L 320 338 L 321 373 L 320 371 L 298 371 L 249 371 L 250 392 L 259 413 L 271 429 L 285 440 L 304 447 L 326 447 L 349 437 L 366 422 L 383 412 L 397 405 L 406 390 L 415 375 L 436 375 L 468 373 L 470 349 L 470 322 L 468 305 L 464 336 L 431 337 L 358 338 Z",
-  UT: "M 249 245 L 249 292 L 249 309 L 249 338 L 302 338 L 302 292 L 302 245 Z",
-  VT: "M 744 140 L 738 133 L 732 140 L 732 155 L 736 168 L 740 168 L 744 160 Z",
-  VA: "M 712 246 L 695 241 L 676 240 L 659 244 L 647 252 L 648 264 L 658 274 L 672 278 L 688 278 L 700 272 L 712 260 Z",
-  WA: "M 199 102 L 175 101 L 151 103 L 137 114 L 138 130 L 152 138 L 170 140 L 196 138 L 212 130 L 214 118 Z",
-  WV: "M 672 240 L 659 232 L 646 230 L 637 236 L 634 248 L 640 258 L 648 264 L 659 260 L 667 252 Z",
-  WI: "M 556 175 L 540 172 L 524 172 L 516 182 L 517 198 L 522 210 L 534 216 L 543 210 L 553 202 L 562 190 Z",
-  WY: "M 303 182 L 286 184 L 258 186 L 246 193 L 234 196 L 234 244 L 249 245 L 302 245 L 358 245 L 358 240 L 358 220 L 358 183 L 333 182 Z",
-  DC: "M 714 225 L 710 228 L 712 232 L 716 230 Z",
-};
-
-// Label center positions for each state
-const labelPositions: Record<string, [number, number]> = {
-  AL:[594,392], AK:[83,410], AZ:[212,332], AR:[530,332], CA:[148,238],
-  CO:[302,292], CT:[735,174], DE:[724,207], FL:[641,432], GA:[643,370],
-  HI:[258,432], ID:[228,162], IL:[557,268], IN:[587,265], IA:[504,228],
-  KS:[413,308], KY:[608,284], LA:[526,388], ME:[762,130], MD:[703,222],
-  MA:[748,160], MI:[588,172], MN:[494,168], MS:[555,378], MO:[515,278],
-  MT:[274,152], NE:[412,262], NV:[184,242], NH:[748,151], NJ:[722,201],
-  NM:[282,332], NY:[698,172], NC:[658,298], ND:[388,160], OH:[625,254],
-  OK:[393,348], OR:[172,168], PA:[688,206], RI:[746,175], SC:[669,324],
-  SD:[392,210], TN:[598,318], TX:[362,403], UT:[272,292], VT:[738,152],
-  VA:[678,258], WA:[176,118], WV:[652,248], WI:[538,190], WY:[298,214],
-  DC:[713,228],
-};
-
 const hasProviders = (slug: string) => stateDataMap.has(slug);
 
-const stateLabels = Object.entries(stateCodeToSlug)
-  .filter(([code]) => labelPositions[code] && statePaths[code])
-  .map(([code, slug]) => ({
-    code, slug,
-    x: labelPositions[code][0],
-    y: labelPositions[code][1],
-    hasData: hasProviders(slug),
-  }));
+const stateCodeToSlug: Record<string, string> = Object.fromEntries(
+  Object.entries(statePaths).map(([code, info]) => [code, (info as any).slug])
+);
 
 const stateDataForScript = Object.fromEntries(
   states.map(s => [s.slug, { name: s.name, count: s.count }])
 );
+
+// Build list of all state entries for the template
+const stateEntries = Object.entries(statePaths).map(([code, info]: [string, any]) => ({
+  code,
+  slug: info.slug,
+  d: info.d,
+  cx: parseFloat(info.cx),
+  cy: parseFloat(info.cy),
+  hasData: hasProviders(info.slug),
+}));
 ---
 
-<div class="usa-map-wrapper w-full max-w-5xl mx-auto select-none">
+<div class="usa-map-wrapper w-full max-w-5xl mx-auto select-none" style="position:relative;">
   <svg
     id="usa-map"
-    viewBox="40 90 760 400"
+    viewBox="0 0 960 600"
     xmlns="http://www.w3.org/2000/svg"
     class="w-full h-auto"
-    aria-label="Interactive USA map – click a state to browse Life Care Planners"
+    aria-label="Interactive USA map — click a state to browse Life Care Planners"
   >
     <style>
       .state-path {
         fill: #d1d5db;
-        stroke: #fff;
-        stroke-width: 1;
+        stroke: #ffffff;
+        stroke-width: 0.8;
         cursor: default;
         transition: fill 0.15s;
       }
@@ -139,41 +58,41 @@ const stateDataForScript = Object.fromEntries(
       .state-path.has-providers:hover {
         fill: #2563eb;
       }
+      .state-label {
+        pointer-events: none;
+        font-size: 7px;
+        font-family: system-ui, sans-serif;
+        font-weight: 700;
+        text-anchor: middle;
+        dominant-baseline: middle;
+      }
     </style>
 
-    {Object.entries(statePaths).map(([code, path]) => {
-      const slug = stateCodeToSlug[code];
-      const hasData = hasProviders(slug);
-      return (
+    <!-- All 50 states + DC drawn with real geographic paths -->
+    {stateEntries.map(({ code, slug, d, cx, cy, hasData }) => (
+      <>
         <path
           id={code}
-          d={path}
+          d={d}
           class={`state-path${hasData ? ' has-providers' : ''}`}
         />
-      );
-    })}
-
-    {stateLabels.map(({ code, x, y, hasData }) => (
-      <text
-        x={x}
-        y={y}
-        text-anchor="middle"
-        dominant-baseline="middle"
-        class="pointer-events-none"
-        font-size="6.5"
-        font-family="system-ui, sans-serif"
-        font-weight="700"
-        fill={hasData ? '#1e40af' : '#9ca3af'}
-      >
-        {code}
-      </text>
+        <text
+          x={cx}
+          y={cy}
+          class="state-label"
+          fill={hasData ? '#1e40af' : '#9ca3af'}
+        >
+          {code}
+        </text>
+      </>
     ))}
   </svg>
 
-  <div id="map-tooltip"></div>
+  <div id="map-tooltip" style="position:absolute;pointer-events:none;background:rgba(15,23,42,0.88);color:#fff;padding:5px 10px;border-radius:6px;font-size:12px;white-space:nowrap;display:none;z-index:50;"></div>
 
   <p class="text-center text-sm text-gray-500 mt-3">
-    <span class="inline-block w-3 h-3 rounded bg-blue-200 mr-1 align-middle"></span>Blue states have Life Care Planners — click to browse
+    <span class="inline-block w-3 h-3 rounded bg-blue-200 mr-1 align-middle"></span>
+    Blue states have Life Care Planners — click to browse
   </p>
 </div>
 
@@ -202,7 +121,7 @@ const stateDataForScript = Object.fromEntries(
       if (!tooltip || !wrapper) return;
       var rect = wrapper.getBoundingClientRect();
       tooltip.style.left = (e.clientX - rect.left + 12) + 'px';
-      tooltip.style.top  = (e.clientY - rect.top  - 32) + 'px';
+      tooltip.style.top = (e.clientY - rect.top - 32) + 'px';
     });
 
     el.addEventListener('mouseleave', function() {
@@ -210,19 +129,3 @@ const stateDataForScript = Object.fromEntries(
     });
   });
 </script>
-
-<style>
-  .usa-map-wrapper { position: relative; }
-  #map-tooltip {
-    position: absolute;
-    pointer-events: none;
-    background: rgba(15,23,42,0.88);
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    white-space: nowrap;
-    display: none;
-    z-index: 50;
-  }
-</style>
