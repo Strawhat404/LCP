@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+<BaseLayout
+  title="What is a Physician Life Care Planner? — MyLifeCarePlanning.com"
+  description="A physician life care planner is a board-certified MD or DO who specializes in preparing life care plans for injury, disability, and litigation cases."
+>
+  <Header />
+  <main class="flex-1">
+    <section class="bg-brand-900 text-white">
+      <div class="page-container py-12">
+        <h1 class="text-3xl sm:text-4xl font-bold">What is a Physician Life Care Planner?</h1>
+        <p class="mt-3 text-brand-200 max-w-2xl">A board-certified MD or DO who specializes in preparing life care plans for injury and disability cases.</p>
+      </div>
+    </section>
+    <div class="page-container section-padding">
+      <div class="max-w-3xl mx-auto prose prose-gray">
+        <p class="text-lg text-gray-600 leading-relaxed">A physician life care planner is a medical doctor (MD or DO) who has completed specialized training in life care planning and holds a recognized certification such as the CLCP (Certified Life Care Planner). They combine their clinical medical expertise with structured planning methodology to produce comprehensive, defensible life care plans.</p>
+
+        <h2>Qualifications</h2>
+        <p>Physician life care planners typically hold:</p>
+        <ul>
+          <li>A Doctor of Medicine (MD) or Doctor of Osteopathic Medicine (DO) degree</li>
+          <li>Active state medical license in good standing</li>
+          <li>Board certification in a relevant specialty (physical medicine, neurology, orthopedics, etc.)</li>
+          <li>Life care planning certification (CLCP, CPLCP, or similar)</li>
+        </ul>
+
+        <h2>What makes a physician LCP different?</h2>
+        <p>Unlike nurse or counselor life care planners, a physician has the independent authority to:</p>
+        <ul>
+          <li>Diagnose medical conditions independently</li>
+          <li>Interpret diagnostic imaging and lab results</li>
+          <li>Order and justify future medical treatments</li>
+          <li>Serve as a treating or examining physician in addition to a planner</li>
+          <li>Provide expert medical testimony at trial</li>
+        </ul>
+
+        <h2>When do you need one?</h2>
+        <p>You should consider retaining a physician life care planner when the case involves catastrophic injuries such as traumatic brain injury, spinal cord injury, severe burns, amputation, or complex multi-system trauma where the medical complexity of the plan is likely to be challenged at trial.</p>
+
+        <div class="not-prose mt-10 p-6 bg-brand-50 border border-brand-200 rounded-xl text-center">
+          <h3 class="text-lg font-semibold text-brand-900 mb-2">Find a Physician Life Care Planner Near You</h3>
+          <p class="text-gray-700 mb-4">Search our directory of board-certified MDs and DOs by state.</p>
+          <a href="/physician-life-care-planners" class="btn-primary text-sm">Browse by State</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

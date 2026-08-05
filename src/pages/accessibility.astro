@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+<BaseLayout title="Accessibility Statement — MyLifeCarePlanning.com" description="Accessibility statement for MyLifeCarePlanning.com.">
+  <Header />
+  <main class="flex-1">
+    <div class="page-container section-padding">
+      <div class="max-w-3xl mx-auto prose prose-gray">
+        <h1>Accessibility Statement</h1>
+        <p class="text-gray-500 text-sm">Last updated: August 2026</p>
+        <p>MyLifeCarePlanning.com is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply relevant accessibility standards.</p>
+        <h2>Measures Taken</h2>
+        <ul>
+          <li>Semantic HTML structure for screen reader compatibility</li>
+          <li>ARIA labels on interactive elements</li>
+          <li>Sufficient color contrast ratios throughout the site</li>
+          <li>Keyboard navigable interface</li>
+          <li>Alt text on all informational images</li>
+          <li>Responsive design for all screen sizes</li>
+        </ul>
+        <h2>Known Limitations</h2>
+        <p>We are aware of some accessibility limitations on this site and are actively working to address them. If you experience any difficulty accessing content, please contact us.</p>
+        <h2>Feedback</h2>
+        <p>We welcome feedback on the accessibility of this site. Please contact us at info@mylifecareplanning.com if you encounter accessibility barriers.</p>
+        <h2>Formal Complaints</h2>
+        <p>If you are not satisfied with our response, you may contact the relevant national authority responsible for enforcing accessibility laws in your jurisdiction.</p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
