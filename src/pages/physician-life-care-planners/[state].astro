@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import ProviderCard from "../../components/ProviderCard.astro";
+import { getAllPhysicianStates, getPhysiciansByState } from "../../utils/data";
+
+export function getStaticPaths() {
+  return getAllPhysicianStates().map(state => ({ params: { state } }));
+}
+
+const { state } = Astro.params;
+
+const stateDisplay = state!.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+const physicians = getPhysiciansByState(state!);
+---
+
+<BaseLayout
+  title={`Physician Life Care Planners in ${stateDisplay} — MD & DO Expert Witnesses`}
+  description={`Find board-certified physician Life Care Planners (MD, DO) in ${stateDisplay}. Trusted by attorneys and courts for expert witness testimony and life care plan documentation.`}
+>
+  <Header />
+
+  <main class="flex-1">
+    <div class="page-container section-padding">
+      <Breadcrumb
+        links={[
+          { label: "Home", href: "/" },
+          { label: "Physician LCPs", href: "/physician-life-care-planners" },
+          { label: stateDisplay, href: `/physician-life-care-planners/${state}` },
+        ]}
+      />
+
+      <div class="flex items-center gap-3 mb-2">
+        <h1 class="text-3xl font-bold text-gray-900">
+          Physician Life Care Planners in {stateDisplay}
+        </h1>
+        <span class="bg-brand-100 text-brand-800 text-sm font-semibold px-3 py-1 rounded-full">
+          {physicians.length} MD{physicians.length !== 1 ? 's' : ''}
+        </span>
+      </div>
+      <p class="text-gray-600 mb-8">
+        Board-certified MDs and DOs in {stateDisplay} who specialize in life care planning. Trusted by personal injury attorneys and courts.
+      </p>
+
+      <div class="space-y-3">
+        {physicians.map(provider => (
+          <ProviderCard provider={provider} />
+        ))}
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="/physician-life-care-planners" class="inline-flex items-center gap-2 text-brand-700 font-medium hover:text-brand-900 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Back to All Physician LCPs
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,125 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getAllPhysicianStates, getPhysicianCountByState } from "../../utils/data";
+
+const states = getAllPhysicianStates().map(state => ({
+  slug: state,
+  name: state.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
+  count: getPhysicianCountByState(state),
+})).sort((a, b) => b.count - a.count);
+
+const totalPhysicians = states.reduce((sum, s) => sum + s.count, 0);
+---
+
+<BaseLayout
+  title="Physician Life Care Planners Directory — Find MD & DO Expert Witnesses"
+  description="Find board-certified physician Life Care Planners (MD, DO) across the USA. Trusted by attorneys and courts for expert witness testimony and life care plan documentation."
+>
+  <Header />
+
+  <main class="flex-1">
+    <!-- Hero -->
+    <section class="relative bg-brand-900 text-white overflow-hidden">
+      <div class="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1200&q=60&auto=format&fit=crop"
+          alt="Physician reviewing life care plan documents"
+          class="w-full h-full object-cover opacity-20"
+          loading="eager"
+          width="1200" height="600"
+        />
+      </div>
+      <div class="relative page-container py-14 text-center">
+        <div class="inline-flex items-center gap-2 bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          Physician-Only Directory
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
+          Physician Life Care Planners
+        </h1>
+        <p class="mt-4 text-lg text-brand-200 max-w-2xl mx-auto">
+          Board-certified MDs and DOs who specialize in life care planning. Trusted by personal injury attorneys, insurance companies, and courts nationwide.
+        </p>
+        <div class="mt-6 flex flex-wrap justify-center gap-6 text-center">
+          <div>
+            <div class="text-3xl font-bold">{totalPhysicians}</div>
+            <div class="text-brand-200 text-sm">Physician LCPs</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold">{states.length}</div>
+            <div class="text-brand-200 text-sm">States Covered</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold">MD/DO</div>
+            <div class="text-brand-200 text-sm">Verified Credentials</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why physicians section -->
+    <section class="page-container section-padding">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Why Choose a Physician Life Care Planner?</h2>
+          <div class="space-y-4 text-gray-700 leading-relaxed">
+            <p>Attorneys and courts increasingly prefer physician Life Care Planners because their medical degree gives them independent authority to diagnose, interpret imaging, and formulate treatment recommendations without relying on a treating physician's referral.</p>
+            <p>A doctor who creates a life care plan can defend every line item from a clinical standpoint — making the plan more credible in depositions and at trial.</p>
+          </div>
+          <ul class="mt-5 space-y-2 text-sm text-gray-700">
+            {[
+              "Independent clinical authority — no need for physician sign-off",
+              "Can review and interpret imaging, labs, and surgical records directly",
+              "Stronger cross-examination defense at deposition and trial",
+              "Preferred by insurance carriers for large-value settlements",
+              "Experience with catastrophic injury cases including TBI and spinal cord injury",
+            ].map(item => (
+              <li class="flex items-start gap-2">
+                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-brand-500 flex-shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="bg-brand-50 border border-brand-100 rounded-xl p-6">
+          <h3 class="text-lg font-bold text-brand-900 mb-3">What Attorneys Search For</h3>
+          <p class="text-gray-700 text-sm leading-relaxed mb-4">
+            When attorneys search for a "physician life care planner," they need someone who can serve as a credible expert witness — not just a document preparer. Our directory lists only MDs and DOs who hold life care planning certifications.
+          </p>
+          <div class="bg-white rounded-lg p-4 border border-brand-200">
+            <p class="text-xs text-gray-500 uppercase font-semibold mb-2">Common Use Cases</p>
+            <ul class="text-sm text-gray-700 space-y-1">
+              <li>Personal injury litigation</li>
+              <li>Medical malpractice cases</li>
+              <li>Workers' compensation claims</li>
+              <li>Insurance settlement negotiations</li>
+              <li>Catastrophic injury cases</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- State grid -->
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Browse by State</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {states.map(st => (
+          <a
+            href={`/physician-life-care-planners/${st.slug}`}
+            class="card p-4 hover:border-brand-400 transition-colors group flex items-center justify-between"
+          >
+            <span class="font-medium text-gray-800 group-hover:text-brand-700 transition-colors">{st.name}</span>
+            <span class="text-xs bg-brand-50 text-brand-700 px-2 py-0.5 rounded-full font-medium">
+              {st.count} MD{st.count !== 1 ? 's' : ''}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

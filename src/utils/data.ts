@@ -54,3 +54,36 @@ export function getProviderCountByCity(state: string, city: string): number {
 export function getAllProviders(): Provider[] {
   return providers;
 }
+
+// Physician helpers — MD/DO providers only
+export function isPhysician(provider: Provider): boolean {
+  const name = provider.name || '';
+  return /,\s*(MD|DO|M\.D|D\.O)(\b|,|$)/i.test(name);
+}
+
+export function getPhysiciansByState(state: string): Provider[] {
+  return getProvidersByState(state).filter(isPhysician);
+}
+
+export function getPhysiciansByCity(state: string, city: string): Provider[] {
+  return getProvidersByCity(state, city).filter(isPhysician);
+}
+
+export function getPhysicianCountByState(state: string): number {
+  return getPhysiciansByState(state).length;
+}
+
+export function getPhysicianCountByCity(state: string, city: string): number {
+  return getPhysiciansByCity(state, city).length;
+}
+
+export function getAllPhysicianStates(): string[] {
+  // Only states with 2+ physicians (avoids thin pages)
+  return getAllStates().filter(state => getPhysicianCountByState(state) >= 2);
+}
+
+export function getPhysicianCitiesByState(state: string): string[] {
+  return Array.from(
+    new Set(getPhysiciansByState(state).map(p => p.city))
+  ).sort();
+}
