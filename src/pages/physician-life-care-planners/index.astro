@@ -2,7 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import { getAllPhysicianStates, getPhysicianCountByState, getAllStates } from "../../utils/data";
+import USAMapSVG from "../../components/USAMapSVG.astro";
+import { getPhysicianCountByState } from "../../utils/data";
 
 const ALL_STATES = [
   "alabama","alaska","arizona","arkansas","california","colorado","connecticut","delaware",
@@ -16,13 +17,23 @@ const ALL_STATES = [
   "nova-scotia","ontario","quebec","saskatchewan"
 ];
 
-const states = ALL_STATES.map(state => ({
+// Only pass states that have at least 1 physician to the map (blue states)
+// States with 0 will automatically show gray
+const physicianStates = ALL_STATES
+  .map(state => ({
+    slug: state,
+    name: state.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
+    count: getPhysicianCountByState(state),
+  }))
+  .filter(s => s.count > 0);
+
+const allStatesForMap = ALL_STATES.map(state => ({
   slug: state,
   name: state.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
   count: getPhysicianCountByState(state),
-})).sort((a, b) => b.count - a.count);
+}));
 
-const totalPhysicians = states.reduce((sum, s) => sum + s.count, 0);
+const totalPhysicians = physicianStates.reduce((sum, s) => sum + s.count, 0);
 ---
 
 <BaseLayout
@@ -62,7 +73,7 @@ const totalPhysicians = states.reduce((sum, s) => sum + s.count, 0);
             <div class="text-brand-200 text-sm">Physician LCPs</div>
           </div>
           <div>
-            <div class="text-3xl font-bold">{states.length}</div>
+            <div class="text-3xl font-bold">{physicianStates.length}</div>
             <div class="text-brand-200 text-sm">States Covered</div>
           </div>
           <div>
@@ -115,20 +126,15 @@ const totalPhysicians = states.reduce((sum, s) => sum + s.count, 0);
         </div>
       </div>
 
-      <!-- State grid -->
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Browse by State</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {states.map(st => (
-          <a
-            href={`/physician-life-care-planners/${st.slug}`}
-            class="card p-4 hover:border-brand-400 transition-colors group flex items-center justify-between"
-          >
-            <span class="font-medium text-gray-800 group-hover:text-brand-700 transition-colors">{st.name}</span>
-            <span class="text-xs bg-brand-50 text-brand-700 px-2 py-0.5 rounded-full font-medium">
-              {st.count} MD{st.count !== 1 ? 's' : ''}
-            </span>
-          </a>
-        ))}
+      <!-- SVG Map replacing state grid -->
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Browse by State</h2>
+      <p class="text-gray-600 mb-6">Blue states have physician Life Care Planners — click to browse. Gray states have no physician LCPs currently listed.</p>
+      <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
+        <USAMapSVG
+          states={physicianStates}
+          basePath="/physician-life-care-planners"
+          tooltipLabel="Physician LCPs"
+        />
       </div>
     </section>
   </main>

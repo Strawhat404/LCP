@@ -9,9 +9,11 @@ interface StateInfo {
 
 interface Props {
   states: StateInfo[];
+  basePath?: string;
+  tooltipLabel?: string;
 }
 
-const { states } = Astro.props;
+const { states, basePath = '/life-care-planners', tooltipLabel = 'LCPs' } = Astro.props;
 
 const stateDataMap = new Map(states.map(s => [s.slug, s]));
 const hasProviders = (slug: string) => stateDataMap.has(slug);
@@ -96,7 +98,7 @@ const stateEntries = Object.entries(statePaths).map(([code, info]: [string, any]
   </p>
 </div>
 
-<script define:vars={{ stateCodeToSlug, stateData: stateDataForScript }}>
+<script define:vars={{ stateCodeToSlug, stateData: stateDataForScript, basePath, tooltipLabel }}>
   var tooltip = document.getElementById('map-tooltip');
   var wrapper = document.querySelector('.usa-map-wrapper');
 
@@ -104,7 +106,7 @@ const stateEntries = Object.entries(statePaths).map(([code, info]: [string, any]
     el.addEventListener('click', function() {
       var slug = stateCodeToSlug[el.id];
       if (slug && stateData[slug]) {
-        window.location.href = '/life-care-planners/' + slug;
+        window.location.href = basePath + '/' + slug;
       }
     });
 
@@ -112,7 +114,7 @@ const stateEntries = Object.entries(statePaths).map(([code, info]: [string, any]
       var slug = stateCodeToSlug[el.id];
       var info = stateData[slug];
       if (info && tooltip) {
-        tooltip.textContent = info.name + ' — ' + info.count + (info.count !== 1 ? ' LCPs' : ' LCP');
+        tooltip.textContent = info.name + ' — ' + info.count + ' ' + tooltipLabel;
         tooltip.style.display = 'block';
       }
     });
