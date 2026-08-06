@@ -15,7 +15,7 @@ const cityName = provider.city.split("-").map(w => w.charAt(0).toUpperCase() + w
 ---
 
 <div class="card p-4 sm:p-5 flex flex-col sm:flex-row gap-4 group hover:border-brand-300">
-  <a href={`/life-care-planners/${provider.state}/${provider.city}/${provider.slug}`} class="flex-shrink-0">
+  <a href={`/physician-life-care-planners/${provider.state}/${provider.city}/${provider.slug}`} class="flex-shrink-0">
     <div class="relative">
       <img
         src={provider.image}
@@ -32,7 +32,7 @@ const cityName = provider.city.split("-").map(w => w.charAt(0).toUpperCase() + w
   <div class="flex-1 min-w-0">
     <div class="flex items-center gap-2 flex-wrap">
       <a
-        href={`/life-care-planners/${provider.state}/${provider.city}/${provider.slug}`}
+        href={`/physician-life-care-planners/${provider.state}/${provider.city}/${provider.slug}`}
         class="text-base font-semibold text-brand-800 hover:text-brand-600 transition-colors"
       >
         {provider.name}
@@ -61,7 +61,7 @@ const cityName = provider.city.split("-").map(w => w.charAt(0).toUpperCase() + w
       Call
     </a>
     <a
-      href={`/life-care-planners/${provider.state}/${provider.city}/${provider.slug}`}
+      href={`/physician-life-care-planners/${provider.state}/${provider.city}/${provider.slug}`}
       class="text-xs font-medium text-gray-600 hover:text-brand-700 hover:underline"
     >
       View Profile

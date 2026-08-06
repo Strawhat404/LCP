@@ -13,7 +13,7 @@ interface Props {
   tooltipLabel?: string;
 }
 
-const { states, basePath = '/life-care-planners', tooltipLabel = 'LCPs' } = Astro.props;
+const { states, basePath = '/physician-life-care-planners', tooltipLabel = 'LCPs' } = Astro.props;
 
 const stateDataMap = new Map(states.map(s => [s.slug, s]));
 const hasProviders = (slug: string) => stateDataMap.has(slug);

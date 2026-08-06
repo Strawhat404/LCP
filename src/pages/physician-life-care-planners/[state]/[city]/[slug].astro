@@ -33,9 +33,9 @@ const cityDisplay = city!.split("-").map(w => w.charAt(0).toUpperCase() + w.slic
       <Breadcrumb
         links={[
           { label: "Home", href: "/" },
-          { label: stateDisplay, href: `/life-care-planners/${state}` },
-          { label: cityDisplay, href: `/life-care-planners/${state}/${city}` },
-          { label: provider.name, href: `/life-care-planners/${state}/${city}/${slug}` },
+          { label: stateDisplay, href: `/physician-life-care-planners/${state}` },
+          { label: cityDisplay, href: `/physician-life-care-planners/${state}/${city}` },
+          { label: provider.name, href: `/physician-life-care-planners/${state}/${city}/${slug}` },
         ]}
       />
 
@@ -88,7 +88,7 @@ const cityDisplay = city!.split("-").map(w => w.charAt(0).toUpperCase() + w.slic
       </div>
 
       <div class="text-center mt-8">
-        <a href={`/life-care-planners/${state}/${city}`} class="text-brand-700 hover:text-brand-900 hover:underline text-sm font-medium">
+        <a href={`/physician-life-care-planners/${state}/${city}`} class="text-brand-700 hover:text-brand-900 hover:underline text-sm font-medium">
           &larr; Back to {cityDisplay} Life Care Planners
         </a>
       </div>
