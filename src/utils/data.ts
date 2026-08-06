@@ -78,8 +78,8 @@ export function getPhysicianCountByCity(state: string, city: string): number {
 }
 
 export function getAllPhysicianStates(): string[] {
-  // Only states with 2+ physicians (avoids thin pages)
-  return getAllStates().filter(state => getPhysicianCountByState(state) >= 2);
+  // All states that have at least 1 physician
+  return getAllStates().filter(state => getPhysicianCountByState(state) >= 1);
 }
 
 export function getPhysicianCitiesByState(state: string): string[] {

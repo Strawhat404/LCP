@@ -1,8 +1,12 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   output: "static",
-  site: process.env.PUBLIC_SITE_URL || "https://example.com",
-  integrations: [tailwind()],
+  site: "https://www.mylifecareplanning.com",
+  integrations: [
+    tailwind(),
+    sitemap(),
+  ],
 });

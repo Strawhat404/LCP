@@ -28,7 +28,7 @@ if (!providers || providers.length === 0) return null;
       const cityName = p.city.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
       return (
         <a
-          href={`/${p.state}/${p.city}/${p.slug}`}
+          href={`/life-care-planners/${p.state}/${p.city}/${p.slug}`}
           class="flex items-center gap-3 bg-white/10 rounded p-3 hover:bg-white/20 transition-colors"
         >
           <img src={p.image} alt={p.name} class="w-10 h-10 rounded-full bg-white/20 flex-shrink-0" width="40" height="40" />

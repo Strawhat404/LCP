@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import USAMap from "../components/USAMapSVG.astro";
-import { getAllStates, getProviderCountByState } from "../utils/data";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import USAMap from "../../components/USAMapSVG.astro";
+import { getAllStates, getProviderCountByState } from "../../utils/data";
 
 const states = getAllStates().map((state) => ({
   slug: state,

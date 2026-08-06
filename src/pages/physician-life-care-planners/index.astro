@@ -2,9 +2,21 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import { getAllPhysicianStates, getPhysicianCountByState } from "../../utils/data";
+import { getAllPhysicianStates, getPhysicianCountByState, getAllStates } from "../../utils/data";
 
-const states = getAllPhysicianStates().map(state => ({
+const ALL_STATES = [
+  "alabama","alaska","arizona","arkansas","california","colorado","connecticut","delaware",
+  "florida","georgia","hawaii","idaho","illinois","indiana","iowa","kansas","kentucky",
+  "louisiana","maine","maryland","massachusetts","michigan","minnesota","mississippi",
+  "missouri","montana","nebraska","nevada","new-hampshire","new-jersey","new-mexico",
+  "new-york","north-carolina","north-dakota","ohio","oklahoma","oregon","pennsylvania",
+  "rhode-island","south-carolina","south-dakota","tennessee","texas","utah","vermont",
+  "virginia","washington","west-virginia","wisconsin","wyoming",
+  "alberta","british-columbia","manitoba","new-brunswick","newfoundland-and-labrador",
+  "nova-scotia","ontario","quebec","saskatchewan"
+];
+
+const states = ALL_STATES.map(state => ({
   slug: state,
   name: state.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
   count: getPhysicianCountByState(state),

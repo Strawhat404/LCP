@@ -104,7 +104,7 @@ const stateEntries = Object.entries(statePaths).map(([code, info]: [string, any]
     el.addEventListener('click', function() {
       var slug = stateCodeToSlug[el.id];
       if (slug && stateData[slug]) {
-        window.location.href = '/' + slug;
+        window.location.href = '/life-care-planners/' + slug;
       }
     });
 
