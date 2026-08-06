@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lcp-directory.pages.dev/sitemap.xml
+Sitemap: https://www.mylifecareplanning.com/sitemap-index.xml
