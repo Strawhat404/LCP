@@ -11,8 +11,6 @@ const states = getAllStates().map((state) => ({
   name: state.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
   count: getProviderCountByState(state),
 }));
-
-const phone = "800-292-1919";
 ---
 
 <BaseLayout
