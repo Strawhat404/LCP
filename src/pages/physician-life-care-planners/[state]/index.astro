@@ -5,8 +5,7 @@ import Footer from "../../../components/Footer.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 import SponsoredBanner from "../../../components/SponsoredBanner.astro";
 import PlatformBanner from "../../../components/PlatformBanner.astro";
-import { getAllStates, getCitiesByState, getProviderCountByCity, getPhysicianCountByCity, getProvidersByState } from "../../../utils/data";
-
+import { getAllStates, getCitiesByState, getProviderCountByCity, getPhysicianCountByCity } from "../../../utils/data";
 export function getStaticPaths() {
   return getAllStates().map((state) => ({ params: { state } }));
 }
@@ -23,15 +22,6 @@ const cities = getCitiesByState(state!).map((city) => ({
   count: getProviderCountByCity(state!, city),
   physicianCount: getPhysicianCountByCity(state!, city),
   displayName: city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
-}));
-
-const sponsoredProviders = getProvidersByState(state!).map((p) => ({
-  slug: p.slug,
-  name: p.name,
-  city: p.city,
-  state: p.state,
-  specialty: p.specialty,
-  image: p.image,
 }));
 ---
 
@@ -57,7 +47,7 @@ const sponsoredProviders = getProvidersByState(state!).map((p) => ({
         Find qualified Life Care Planners in major metropolitan areas across {stateDisplay}.
       </p>
 
-      <SponsoredBanner providers={sponsoredProviders} />
+      <SponsoredBanner />
 
       <div class="mb-8">
         <h2 class="text-xl font-semibold text-gray-900 mb-4">Select a City</h2>

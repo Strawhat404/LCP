@@ -1,43 +1,274 @@
 ---
-interface Props {
-  providers: Array<{
-    slug: string;
-    name: string;
-    city: string;
-    state: string;
-    specialty: string;
-    image: string;
-  }>;
-}
-
-const { providers } = Astro.props;
-if (!providers || providers.length === 0) return null;
+// Sponsored banner — Dr. Arkam Rehman, MD (CaseReview.Health)
+// Design faithfully matches CaseReviewHealth_WebsiteBanner_1600x500.html
 ---
 
-<div class="bg-gradient-to-r from-brand-700 to-brand-900 text-white rounded-lg p-6 mb-8">
-  <div class="flex items-center gap-2 mb-4">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="sponsored-banner-wrap">
+  <div class="sponsored-label">
+    <svg xmlns="http://www.w3.org/2000/svg" class="star-icon" fill="currentColor" viewBox="0 0 24 24">
       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
     </svg>
-    <h3 class="text-lg font-semibold">Sponsored Life Care Planners</h3>
+    Sponsored
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-    {providers.slice(0, 3).map((p) => {
-      const stateName = p.state.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-      const cityName = p.city.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-      return (
-        <a
-          href={`/physician-life-care-planners/${p.state}/${p.city}/${p.slug}`}
-          class="flex items-center gap-3 bg-white/10 rounded p-3 hover:bg-white/20 transition-colors"
-        >
-          <img src={p.image} alt={p.name} class="w-10 h-10 rounded-full bg-white/20 flex-shrink-0" width="40" height="40" />
-          <div class="min-w-0">
-            <p class="font-medium text-sm truncate">{p.name}</p>
-            <p class="text-xs text-brand-200 truncate">{cityName}, {stateName}</p>
-          </div>
-        </a>
-      );
-    })}
+  <div class="sponsored-banner">
+
+    <!-- LEFT: Doctor photo -->
+    <div class="photo-cell">
+      <div class="photo-frame">
+        <img src="/dr-rehman.png" alt="Dr. Arkam Rehman, MD" />
+      </div>
+    </div>
+
+    <!-- MIDDLE: Name, credentials, affiliations -->
+    <div class="info-cell">
+      <div class="doc-name">Dr. Arkam Rehman, MD</div>
+      <div class="doc-cred">Double Board Certified Physician | Certified Life Care Planner (CLCP)</div>
+      <div class="badge-row">
+        <span class="badge">ABPMR Diplomat</span>
+        <span class="badge">Pain Medicine</span>
+        <span class="badge">Depositions &amp; Trials</span>
+      </div>
+      <div class="affil">
+        Sunshine Spine &amp; Pain PA &nbsp;·&nbsp; HCA Orange Park &nbsp;·&nbsp; Baptist South<br/>
+        Ascension Riverside &nbsp;·&nbsp; LECOM Medical College
+      </div>
+    </div>
+
+    <!-- TAGLINE strip -->
+    <div class="tagline-cell">
+      <div class="tagline-item">Express Turnaround</div>
+      <span class="tagline-divider">◆</span>
+      <div class="tagline-item">All 50 States</div>
+    </div>
+
+    <!-- RIGHT: QR code -->
+    <div class="qr-cell">
+      <div class="qr-box">
+        <img src="/case-intelligence-qr.png" alt="Case Intelligence Roadmap QR Code" />
+      </div>
+      <div class="qr-label">Case Intelligence<br/>Roadmap</div>
+      <div class="qr-sub">Scan to explore ↑</div>
+    </div>
+
   </div>
 </div>
+
+<style>
+  .sponsored-banner-wrap {
+    margin-bottom: 2rem;
+  }
+
+  .sponsored-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #FFB703;
+    background: rgba(255, 183, 3, 0.1);
+    border: 1px solid rgba(255, 183, 3, 0.4);
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin-bottom: 8px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .star-icon {
+    width: 12px;
+    height: 12px;
+    color: #FFB703;
+  }
+
+  .sponsored-banner {
+    width: 100%;
+    background: linear-gradient(120deg, #1e3a8a 0%, #1d4ed8 55%, #1e40af 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 28px 40px;
+    gap: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    box-shadow: 0 4px 24px rgba(30, 58, 138, 0.35);
+  }
+
+  /* LEFT — doctor photo */
+  .photo-cell {
+    flex-shrink: 0;
+    padding-right: 36px;
+  }
+
+  .photo-frame {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 4px solid #FFB703;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* MIDDLE — name, creds, affiliations */
+  .info-cell {
+    flex: 1;
+    padding-right: 32px;
+    min-width: 0;
+  }
+
+  .doc-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+
+  .doc-cred {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFB703;
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  .badge-row {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffffff;
+    background: rgba(255, 183, 3, 0.12);
+    border: 1px solid rgba(255, 183, 3, 0.5);
+    border-radius: 20px;
+    padding: 4px 12px;
+    white-space: nowrap;
+  }
+
+  .affil {
+    margin-top: 12px;
+    font-size: 12.5px;
+    color: #bfdbfe;
+    line-height: 1.7;
+  }
+
+  /* TAGLINE strip */
+  .tagline-cell {
+    flex-shrink: 0;
+    width: 180px;
+    text-align: center;
+    padding: 0 28px;
+    border-left: 1px solid rgba(255, 183, 3, 0.35);
+    border-right: 1px solid rgba(255, 183, 3, 0.35);
+  }
+
+  .tagline-item {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.4;
+  }
+
+  .tagline-divider {
+    color: #FFB703;
+    font-size: 18px;
+    display: block;
+    margin: 4px 0;
+  }
+
+  /* RIGHT — QR block */
+  .qr-cell {
+    flex-shrink: 0;
+    text-align: center;
+    padding-left: 28px;
+  }
+
+  .qr-box {
+    background: #ffffff;
+    border: 2px solid #FFB703;
+    border-radius: 8px;
+    padding: 6px;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+
+  .qr-box img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .qr-label {
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #FFB703;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .qr-sub {
+    margin-top: 2px;
+    font-size: 10px;
+    color: #bfdbfe;
+  }
+
+  /* Mobile: stack vertically */
+  @media (max-width: 768px) {
+    .sponsored-banner {
+      flex-direction: column;
+      padding: 24px 20px;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .photo-cell {
+      padding-right: 0;
+    }
+
+    .photo-frame {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto;
+    }
+
+    .info-cell {
+      padding-right: 0;
+    }
+
+    .badge-row {
+      justify-content: center;
+    }
+
+    .tagline-cell {
+      width: 100%;
+      border-left: none;
+      border-right: none;
+      border-top: 1px solid rgba(255, 183, 3, 0.35);
+      border-bottom: 1px solid rgba(255, 183, 3, 0.35);
+      padding: 16px 0;
+    }
+
+    .qr-cell {
+      padding-left: 0;
+    }
+  }
+</style>
