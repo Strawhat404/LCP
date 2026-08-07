@@ -3,37 +3,24 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import USAMapSVG from "../../components/USAMapSVG.astro";
-import { getPhysicianCountByState } from "../../utils/data";
+import { getPhysicianCountByState, getProviderCountByState, getAllStates } from "../../utils/data";
 
-const ALL_STATES = [
-  "alabama","alaska","arizona","arkansas","california","colorado","connecticut","delaware",
-  "florida","georgia","hawaii","idaho","illinois","indiana","iowa","kansas","kentucky",
-  "louisiana","maine","maryland","massachusetts","michigan","minnesota","mississippi",
-  "missouri","montana","nebraska","nevada","new-hampshire","new-jersey","new-mexico",
-  "new-york","north-carolina","north-dakota","ohio","oklahoma","oregon","pennsylvania",
-  "rhode-island","south-carolina","south-dakota","tennessee","texas","utah","vermont",
-  "virginia","washington","west-virginia","wisconsin","wyoming",
-  "alberta","british-columbia","manitoba","new-brunswick","newfoundland-and-labrador",
-  "nova-scotia","ontario","quebec","saskatchewan"
-];
-
-// Only pass states that have at least 1 physician to the map (blue states)
-// States with 0 will automatically show gray
-const physicianStates = ALL_STATES
-  .map(state => ({
-    slug: state,
-    name: state.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
-    count: getPhysicianCountByState(state),
-  }))
-  .filter(s => s.count > 0);
-
-const allStatesForMap = ALL_STATES.map(state => ({
+// All states that have any LCP (for map coloring — blue = has providers)
+const allStatesForMap = getAllStates().map(state => ({
   slug: state,
   name: state.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
-  count: getPhysicianCountByState(state),
+  count: getProviderCountByState(state),
+  physicianCount: getPhysicianCountByState(state),
 }));
 
+// Physician-only stats for the hero section
+const physicianStates = getAllStates()
+  .map(state => ({ state, count: getPhysicianCountByState(state) }))
+  .filter(s => s.count > 0);
+
 const totalPhysicians = physicianStates.reduce((sum, s) => sum + s.count, 0);
+const totalLCPs = getAllStates().reduce((sum, state) => sum + getProviderCountByState(state), 0);
+const totalStates = getAllStates().length;
 ---
 
 <BaseLayout
@@ -65,18 +52,24 @@ const totalPhysicians = physicianStates.reduce((sum, s) => sum + s.count, 0);
           Physician Life Care Planners
         </h1>
         <p class="mt-4 text-lg text-brand-200 max-w-2xl mx-auto">
-          Board-certified MDs and DOs who specialize in life care planning. Trusted by personal injury attorneys, insurance companies, and courts nationwide.
+          The only directory dedicated exclusively to board-certified MDs and DOs who prepare life care plans.
+          When credibility at deposition or trial matters, attorneys and insurers turn to physician planners
+          for independent clinical authority and defensible cost projections.
         </p>
-        <div class="mt-6 flex flex-wrap justify-center gap-6 text-center">
+        <div class="mt-6 flex flex-wrap justify-center gap-8 text-center">
           <div>
+            <div class="text-3xl font-bold">{totalLCPs}</div>
+            <div class="text-brand-200 text-sm">Total LCPs Listed</div>
+          </div>
+          <div class="border-l border-white/20 pl-8">
             <div class="text-3xl font-bold">{totalPhysicians}</div>
-            <div class="text-brand-200 text-sm">Physician LCPs</div>
+            <div class="text-brand-200 text-sm">Physician LCPs (MD/DO)</div>
           </div>
-          <div>
-            <div class="text-3xl font-bold">{physicianStates.length}</div>
-            <div class="text-brand-200 text-sm">States Covered</div>
+          <div class="border-l border-white/20 pl-8">
+            <div class="text-3xl font-bold">{totalStates}</div>
+            <div class="text-brand-200 text-sm">States &amp; Provinces</div>
           </div>
-          <div>
+          <div class="border-l border-white/20 pl-8">
             <div class="text-3xl font-bold">MD/DO</div>
             <div class="text-brand-200 text-sm">Verified Credentials</div>
           </div>
@@ -128,12 +121,12 @@ const totalPhysicians = physicianStates.reduce((sum, s) => sum + s.count, 0);
 
       <!-- SVG Map replacing state grid -->
       <h2 class="text-2xl font-bold text-gray-900 mb-4">Browse by State</h2>
-      <p class="text-gray-600 mb-6">Blue states have physician Life Care Planners — click to browse. Gray states have no physician LCPs currently listed.</p>
+      <p class="text-gray-600 mb-6">Click any state to browse Life Care Planners in your area.</p>
       <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
         <USAMapSVG
-          states={physicianStates}
+          states={allStatesForMap}
           basePath="/physician-life-care-planners"
-          tooltipLabel="Physician LCPs"
+          tooltipLabel="LCPs"
         />
       </div>
     </section>

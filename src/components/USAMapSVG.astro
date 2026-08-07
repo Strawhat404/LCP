@@ -5,6 +5,7 @@ interface StateInfo {
   slug: string;
   name: string;
   count: number;
+  physicianCount?: number;
 }
 
 interface Props {
@@ -23,7 +24,7 @@ const stateCodeToSlug: Record<string, string> = Object.fromEntries(
 );
 
 const stateDataForScript = Object.fromEntries(
-  states.map(s => [s.slug, { name: s.name, count: s.count }])
+  states.map(s => [s.slug, { name: s.name, count: s.count, physicianCount: s.physicianCount ?? 0 }])
 );
 
 // Build list of all state entries for the template
@@ -114,7 +115,11 @@ const stateEntries = Object.entries(statePaths).map(([code, info]: [string, any]
       var slug = stateCodeToSlug[el.id];
       var info = stateData[slug];
       if (info && tooltip) {
-        tooltip.textContent = info.name + ' — ' + info.count + ' ' + tooltipLabel;
+        var label = info.name + ' — ' + info.count + ' LCP' + (info.count !== 1 ? 's' : '');
+        if (info.physicianCount > 0) {
+          label += ' (' + info.physicianCount + ' Physician)';
+        }
+        tooltip.textContent = label;
         tooltip.style.display = 'block';
       }
     });

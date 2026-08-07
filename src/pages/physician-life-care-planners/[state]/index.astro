@@ -5,7 +5,7 @@ import Footer from "../../../components/Footer.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 import SponsoredBanner from "../../../components/SponsoredBanner.astro";
 import PlatformBanner from "../../../components/PlatformBanner.astro";
-import { getAllStates, getCitiesByState, getProviderCountByCity, getProvidersByState } from "../../../utils/data";
+import { getAllStates, getCitiesByState, getProviderCountByCity, getPhysicianCountByCity, getProvidersByState } from "../../../utils/data";
 
 export function getStaticPaths() {
   return getAllStates().map((state) => ({ params: { state } }));
@@ -21,6 +21,7 @@ const stateDisplay = state!
 const cities = getCitiesByState(state!).map((city) => ({
   name: city,
   count: getProviderCountByCity(state!, city),
+  physicianCount: getPhysicianCountByCity(state!, city),
   displayName: city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
 }));
 
@@ -61,14 +62,14 @@ const sponsoredProviders = getProvidersByState(state!).map((p) => ({
       <div class="mb-8">
         <h2 class="text-xl font-semibold text-gray-900 mb-4">Select a City</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {cities.map(({ name, count, displayName }) => (
+          {cities.map(({ name, count, physicianCount, displayName }) => (
             <a
               href={`/physician-life-care-planners/${state}/${name}`}
               class="card p-4 hover:border-brand-400 transition-colors group flex items-center justify-between"
             >
               <span class="font-medium text-gray-800 group-hover:text-brand-700 transition-colors">{displayName}</span>
               <span class="text-xs bg-brand-50 text-brand-700 px-2 py-0.5 rounded-full font-medium">
-                {count} LCP{count !== 1 ? "s" : ""}
+                {count} LCP{count !== 1 ? "s" : ""}{physicianCount > 0 ? ` (${physicianCount} Physician)` : ""}
               </span>
             </a>
           ))}
