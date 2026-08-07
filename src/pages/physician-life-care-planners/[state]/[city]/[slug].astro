@@ -20,11 +20,64 @@ if (!provider) {
 
 const stateDisplay = state!.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 const cityDisplay = city!.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+
+const profileSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Physician",
+      "@id": `https://www.mylifecareplanning.com/physician-life-care-planners/${state}/${city}/${slug}/#physician`,
+      "name": provider.name,
+      "jobTitle": "Physician Life Care Planner",
+      "medicalSpecialty": {
+        "@type": "MedicalSpecialty",
+        "name": "Physical Medicine and Rehabilitation"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": cityDisplay,
+        "addressRegion": provider.stateCode,
+        "addressCountry": provider.country === "Canada" ? "CA" : "US"
+      },
+      "knowsAbout": [
+        "Life Care Planning",
+        "Catastrophic Injury Valuation",
+        "Physical Medicine and Rehabilitation",
+        "Expert Witness Testimony"
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Professional Certification",
+          "name": provider.certification || "CLCP",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "Commission on Health Care Certification"
+          }
+        }
+      ],
+      "memberOf": {"@id": "https://www.mylifecareplanning.com/#organization"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `https://www.mylifecareplanning.com/physician-life-care-planners/${state}/${city}/${slug}/#breadcrumb`,
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.mylifecareplanning.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Physician Life Care Planners", "item": "https://www.mylifecareplanning.com/physician-life-care-planners/"},
+        {"@type": "ListItem", "position": 3, "name": stateDisplay, "item": `https://www.mylifecareplanning.com/physician-life-care-planners/${state}/`},
+        {"@type": "ListItem", "position": 4, "name": cityDisplay, "item": `https://www.mylifecareplanning.com/physician-life-care-planners/${state}/${city}/`},
+        {"@type": "ListItem", "position": 5, "name": provider.name, "item": `https://www.mylifecareplanning.com/physician-life-care-planners/${state}/${city}/${slug}/`}
+      ]
+    }
+  ]
+});
 ---
 
 <BaseLayout
   title={`${provider.name} - Life Care Planner in ${cityDisplay}, ${stateDisplay}`}
-  description={provider.description}
+  description={`${provider.name} is a board-certified ${provider.specialty} Physician Life Care Planner in ${cityDisplay}, ${stateDisplay}. ${provider.certification}. Expert medical-legal future care cost valuations.`}
+  canonical={`https://www.mylifecareplanning.com/physician-life-care-planners/${state}/${city}/${slug}/`}
+  schema={profileSchema}
 >
   <Header />
 

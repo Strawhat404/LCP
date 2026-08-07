@@ -1,4 +1,12 @@
 ---
+import PlatformBanner from "./PlatformBanner.astro";
+
+interface Props {
+  showBanner?: boolean;
+}
+
+const { showBanner = true } = Astro.props;
+
 const email = "info@mylifecareplanning.com";
 
 const allStates = [
@@ -14,6 +22,14 @@ const allStates = [
   "nova-scotia","ontario","quebec","saskatchewan"
 ];
 ---
+
+{showBanner && (
+  <div class="banner-outer">
+    <div class="page-container">
+      <PlatformBanner />
+    </div>
+  </div>
+)}
 
 <footer class="bg-gray-900 text-gray-300 mt-auto">
   <div class="page-container py-12">
@@ -115,3 +131,10 @@ const allStates = [
 
   </div>
 </footer>
+
+<style>
+  .banner-outer {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+</style>

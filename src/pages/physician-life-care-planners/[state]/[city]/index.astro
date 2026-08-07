@@ -4,6 +4,7 @@ import Header from "../../../../components/Header.astro";
 import Footer from "../../../../components/Footer.astro";
 import Breadcrumb from "../../../../components/Breadcrumb.astro";
 import ProviderCard from "../../../../components/ProviderCard.astro";
+import SponsoredBanner from "../../../../components/SponsoredBanner.astro";
 import { getAllStates, getCitiesByState, getProvidersByCity } from "../../../../utils/data";
 
 export function getStaticPaths() {
@@ -26,6 +27,7 @@ const providers = getProvidersByCity(state!, city!);
 <BaseLayout
   title={`Life Care Planners in ${cityDisplay}, ${stateDisplay}`}
   description={`Find qualified Life Care Planners in ${cityDisplay}, ${stateDisplay}. Browse profiles and contact information.`}
+  canonical={`https://www.mylifecareplanning.com/physician-life-care-planners/${state}/${city}/`}
 >
   <Header />
 
@@ -45,6 +47,8 @@ const providers = getProvidersByCity(state!, city!);
       <p class="text-gray-600 mb-8">
         Showing {providers.length} Life Care Planner{providers.length !== 1 ? "s" : ""} in the {cityDisplay} area.
       </p>
+
+      <SponsoredBanner />
 
       <div class="space-y-3">
         {providers.map((provider) => (

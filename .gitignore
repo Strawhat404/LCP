@@ -38,5 +38,8 @@ scripts/venv/
 *.xls
 *.csv
 
+# Raw client asset files
+CaseReviewHealth_*.html
+
 # Lock files (optional — remove if you want to commit them)
 package-lock.json

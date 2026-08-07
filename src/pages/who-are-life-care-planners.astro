@@ -2,10 +2,44 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://www.mylifecareplanning.com/who-are-life-care-planners/#article",
+      "headline": "Who Are Life Care Planners?",
+      "description": "A guide to life care planner qualifications, certifications, and the difference between physician and nurse life care planners.",
+      "url": "https://www.mylifecareplanning.com/who-are-life-care-planners/",
+      "datePublished": "2024-01-01",
+      "dateModified": "2026-08-07",
+      "publisher": {"@id": "https://www.mylifecareplanning.com/#organization"},
+      "author": {"@type": "Organization", "name": "Physician Life Care Planning Directory", "url": "https://www.mylifecareplanning.com/"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Can a nurse life care planner diagnose medical conditions?", "acceptedAnswer": {"@type": "Answer", "text": "No. Nurse life care planners are not licensed to diagnose medical conditions. Only licensed physicians (MD or DO) can provide medical diagnoses. This distinction is important in legal proceedings where diagnostic opinions may be challenged under Daubert or Frye standards."}},
+        {"@type": "Question", "name": "Why hire a PM&R physician as a life care planner?", "acceptedAnswer": {"@type": "Answer", "text": "Board-certified Physical Medicine and Rehabilitation (PM&R) physicians have specialized training in disability evaluation, rehabilitation, and long-term care needs for catastrophic injuries. Their physician credentials generally provide stronger admissibility under legal evidentiary standards."}},
+        {"@type": "Question", "name": "What certification bodies credential life care planners?", "acceptedAnswer": {"@type": "Answer", "text": "The primary credentialing bodies include the Commission on Health Care Certification (CLCP), the American Association of Nurse Life Care Planners (CNLCP), and the American Board of Physical Medicine and Rehabilitation (ABPMR). Verify credentials directly with the certifying body."}}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.mylifecareplanning.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Who Are Life Care Planners", "item": "https://www.mylifecareplanning.com/who-are-life-care-planners/"}
+      ]
+    }
+  ]
+});
 ---
 <BaseLayout
-  title="Who Are Life Care Planners? — MyLifeCarePlanning.com"
-  description="Life care planners are highly qualified rehabilitation professionals who specialize in evaluating long-term functional disabilities and projecting lifetime care requirements. Learn about their backgrounds, credentials, and role."
+  title="Who Are Life Care Planners? | Physician vs Nurse Experts | LCP Directory"
+  description="Discover who qualifies as a life care planner. Compare PM&R physicians (MD/DO) vs nurse life care planners (CLCP/RN) for legal expert witness testimony and court admissibility."
+  canonical="https://www.mylifecareplanning.com/who-are-life-care-planners/"
+  schema={schema}
 >
   <Header />
   <main class="flex-1">
@@ -17,6 +51,10 @@ import Footer from "../components/Footer.astro";
     </section>
     <div class="page-container section-padding">
       <div class="max-w-3xl mx-auto prose prose-gray">
+
+        <div class="not-prose mb-6 p-4 bg-brand-50 border border-brand-200 rounded-xl text-sm text-gray-700 leading-relaxed">
+          <strong class="text-brand-900">Life Care Planners are qualified healthcare and rehabilitation professionals — including physicians (MD/DO), registered nurses (RN), and rehabilitation consultants — certified to evaluate catastrophic injuries and formulate long-term medical care plans</strong> used in personal injury litigation and insurance settlements.
+        </div>
 
         <p class="text-lg text-gray-600 leading-relaxed">Life care planners are highly qualified rehabilitation professionals, educators, and consultants who specialize in evaluating long-term functional disabilities and projecting lifetime care requirements. They represent a diverse array of licensed disciplines, including physicians (frequently physiatrists), registered nurses, occupational therapists, physical therapists, and vocational rehabilitation specialists who have completed postgraduate training and certified examinations in life care planning.</p>
 

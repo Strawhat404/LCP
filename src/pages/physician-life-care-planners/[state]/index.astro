@@ -4,7 +4,6 @@ import Header from "../../../components/Header.astro";
 import Footer from "../../../components/Footer.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 import SponsoredBanner from "../../../components/SponsoredBanner.astro";
-import PlatformBanner from "../../../components/PlatformBanner.astro";
 import { getAllStates, getCitiesByState, getProviderCountByCity, getPhysicianCountByCity } from "../../../utils/data";
 export function getStaticPaths() {
   return getAllStates().map((state) => ({ params: { state } }));
@@ -23,11 +22,58 @@ const cities = getCitiesByState(state!).map((city) => ({
   physicianCount: getPhysicianCountByCity(state!, city),
   displayName: city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
 }));
+
+const topCities = getCitiesByState(state!).slice(0, 4);
+const stateSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalWebPage",
+      "@id": `https://www.mylifecareplanning.com/physician-life-care-planners/${state}/#webpage`,
+      "url": `https://www.mylifecareplanning.com/physician-life-care-planners/${state}/`,
+      "name": `${stateDisplay} Physician Life Care Planners`,
+      "description": `Directory of board-certified physician life care planners in ${stateDisplay} for personal injury and insurance claims.`,
+      "isPartOf": {"@id": "https://www.mylifecareplanning.com/#website"},
+      "publisher": {"@id": "https://www.mylifecareplanning.com/#organization"},
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": stateDisplay,
+        "containsPlace": topCities.map(c => ({
+          "@type": "City",
+          "name": c.split("-").map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
+        }))
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.mylifecareplanning.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Physician Life Care Planners", "item": "https://www.mylifecareplanning.com/physician-life-care-planners/"},
+        {"@type": "ListItem", "position": 3, "name": stateDisplay, "item": `https://www.mylifecareplanning.com/physician-life-care-planners/${state}/`}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": `How many physician life care planners are in ${stateDisplay}?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `This directory lists board-certified physician life care planners practicing in ${stateDisplay}. Browse the listings above for current availability.`
+          }
+        }
+      ]
+    }
+  ]
+});
 ---
 
 <BaseLayout
-  title={`Life Care Planners in ${stateDisplay} - Find LCPs Near You`}
-  description={`Find qualified Life Care Planners in ${stateDisplay}. Browse by major cities to locate professionals in your area.`}
+  title={`${stateDisplay} Physician Life Care Planners | PM&R Medical Experts | LCP Directory`}
+  description={`Find certified Physician Life Care Planners in ${stateDisplay}. PM&R physician experts for personal injury and insurance claims.`}
+  canonical={`https://www.mylifecareplanning.com/physician-life-care-planners/${state}/`}
+  schema={stateSchema}
 >
   <Header />
 
@@ -65,8 +111,6 @@ const cities = getCitiesByState(state!).map((city) => ({
           ))}
         </div>
       </div>
-
-      <PlatformBanner />
 
       <div class="mt-8 text-center">
         <a href="/physician-life-care-planners" class="inline-flex items-center gap-2 text-brand-700 font-medium hover:text-brand-900 transition-colors">

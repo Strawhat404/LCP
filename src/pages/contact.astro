@@ -8,6 +8,8 @@ import ContactForm from "../components/ContactForm.astro";
 <BaseLayout
   title="Contact Us - Life Care Planner Directory"
   description="Contact the Life Care Planner Directory. Get in touch for questions about finding a Life Care Planner in your area."
+  hidePlatformBanner={true}
+  canonical="https://www.mylifecareplanning.com/contact/"
 >
   <Header />
 
@@ -104,7 +106,7 @@ import ContactForm from "../components/ContactForm.astro";
     </div>
   </main>
 
-  <Footer />
+  <Footer showBanner={false} />
 </BaseLayout>
 
 <script>

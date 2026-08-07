@@ -1,33 +1,259 @@
-<!-- Platform Banner: Promotes the LCP enablement platform to practitioners listed in the directory -->
-<div class="mt-10 rounded-xl overflow-hidden border border-brand-200 bg-gradient-to-r from-brand-900 to-brand-700 text-white">
-  <div class="px-6 py-8 sm:px-10 flex flex-col sm:flex-row items-center gap-6">
+---
+// Platform Banner — CaseReview.Health (bottom banner)
+---
 
-    <!-- Icon -->
-    <div class="flex-shrink-0 w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-      </svg>
+<div class="platform-banner-wrap">
+  <div class="platform-banner">
+
+    <!-- LEFT: Brand name + tagline + audience pills -->
+    <div class="brand-cell">
+      <div class="brand-name">CaseReview.Health</div>
+      <div class="brand-tagline">
+        Advanced medical record extraction and imaging analysis, validated by independent,
+        board-certified physicians for legal, medical, and insurance teams.
+      </div>
+      <div class="pathway-row">
+        <span class="pathway">For Legal Teams</span>
+        <span class="pathway">For Medical Teams</span>
+        <span class="pathway">For Patients</span>
+      </div>
     </div>
 
-    <!-- Text -->
-    <div class="flex-1 text-center sm:text-left">
-      <p class="text-xs font-semibold uppercase tracking-widest text-brand-200 mb-1">For Life Care Planners</p>
-      <h3 class="text-xl font-bold text-white mb-1">Manage Your Practice with Our LCP Platform</h3>
-      <p class="text-brand-100 text-sm leading-relaxed max-w-xl">
-        Our platform helps Life Care Planners streamline documentation, manage cases, and deliver
-        professional reports — all in one place. Join hundreds of practitioners already using it.
-      </p>
+    <!-- MIDDLE: Stats grid + badges -->
+    <div class="stats-cell">
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-num">100+</div>
+          <div class="stat-label">MRI Slices<br/>Reviewed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">MD-Validated<br/>Analysis</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">MD Verified<br/>Reports</div>
+        </div>
+      </div>
+      <div class="badge-row">
+        <span class="badge">Board-Certified Oversight</span>
+        <span class="badge">HIPAA Compliant</span>
+      </div>
     </div>
 
-    <!-- CTA -->
-    <div class="flex-shrink-0">
-      <a
-        href="/contact"
-        class="inline-block bg-white text-brand-900 font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-brand-50 transition-colors whitespace-nowrap"
-      >
-        Learn More →
+    <!-- RIGHT: CTA -->
+    <div class="cta-cell">
+      <a href="https://casereview.health" target="_blank" rel="noopener noreferrer" class="cta-btn">
+        Request a Clinical Review
       </a>
+      <div class="cta-sub">casereview.health</div>
+      <div class="cta-email">contact@casereview.health</div>
+      <div class="cta-nationwide">Nationwide Service</div>
     </div>
 
   </div>
 </div>
+
+<style>
+  .platform-banner-wrap {
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+  }
+
+  .platform-banner {
+    width: 100%;
+    background: linear-gradient(120deg, #1e3a8a 0%, #1d4ed8 55%, #1e40af 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 32px 40px;
+    gap: 0;
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    box-shadow: 0 4px 24px rgba(30, 58, 138, 0.35);
+  }
+
+  /* LEFT — brand */
+  .brand-cell {
+    flex: 1;
+    padding-right: 32px;
+    min-width: 0;
+  }
+
+  .brand-name {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.15;
+    letter-spacing: -0.3px;
+  }
+
+  .brand-tagline {
+    font-size: 13px;
+    font-weight: 400;
+    color: #bfdbfe;
+    margin-top: 10px;
+    line-height: 1.65;
+    max-width: 380px;
+  }
+
+  .pathway-row {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pathway {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1e3a8a;
+    background: #93c5fd;
+    border-radius: 20px;
+    padding: 4px 13px;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+  }
+
+  /* MIDDLE — stats */
+  .stats-cell {
+    flex-shrink: 0;
+    width: 260px;
+    padding: 0 28px;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+  }
+
+  .stat-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 8px;
+  }
+
+  .stat-item {
+    flex: 1;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 26px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: #bfdbfe;
+    line-height: 1.4;
+    margin-top: 4px;
+  }
+
+  .badge-row {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+
+  /* RIGHT — CTA */
+  .cta-cell {
+    flex-shrink: 0;
+    text-align: center;
+    padding-left: 32px;
+    width: 210px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #ffffff;
+    color: #1d4ed8;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 11px 18px;
+    border-radius: 8px;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background 0.15s;
+    cursor: pointer;
+    letter-spacing: 0.1px;
+  }
+
+  .cta-btn:hover {
+    background: #dbeafe;
+  }
+
+  .cta-sub {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #bfdbfe;
+  }
+
+  .cta-email {
+    margin-top: 4px;
+    font-size: 11px;
+    color: #93c5fd;
+    letter-spacing: 0.2px;
+  }
+
+  .cta-nationwide {
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #bfdbfe;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .platform-banner {
+      flex-direction: column;
+      padding: 24px 20px;
+      gap: 24px;
+      text-align: center;
+    }
+
+    .brand-cell {
+      padding-right: 0;
+    }
+
+    .brand-tagline {
+      max-width: 100%;
+    }
+
+    .pathway-row {
+      justify-content: center;
+    }
+
+    .stats-cell {
+      width: 100%;
+      border-left: none;
+      border-right: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 20px 0;
+    }
+
+    .cta-cell {
+      padding-left: 0;
+      width: 100%;
+    }
+  }
+</style>

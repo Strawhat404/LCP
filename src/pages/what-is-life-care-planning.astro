@@ -2,10 +2,45 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://www.mylifecareplanning.com/what-is-life-care-planning/#article",
+      "headline": "What is Life Care Planning?",
+      "description": "A comprehensive guide to life care planning methodology, legal standards, and the physician role in future medical cost projections.",
+      "url": "https://www.mylifecareplanning.com/what-is-life-care-planning/",
+      "datePublished": "2024-01-01",
+      "dateModified": "2026-08-07",
+      "publisher": {"@id": "https://www.mylifecareplanning.com/#organization"},
+      "author": {"@type": "Organization", "name": "Physician Life Care Planning Directory", "url": "https://www.mylifecareplanning.com/"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.mylifecareplanning.com/what-is-life-care-planning/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "What guides life care planning methodology?", "acceptedAnswer": {"@type": "Answer", "text": "Life care plans are built on published standards of practice, clinical experience, and peer-reviewed guidelines — keeping recommendations consistent and grounded in accepted rehabilitation principles."}},
+        {"@type": "Question", "name": "How are costs in a life care plan calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Planners consider the full cost of each recommendation including frequency, replacement cycles, and maintenance — using regional cost data to keep projections realistic and defensible in court."}},
+        {"@type": "Question", "name": "What makes a life care plan dynamic?", "acceptedAnswer": {"@type": "Answer", "text": "Life care plans can be updated as new assessments, treatments, or technologies emerge, keeping the roadmap aligned with current clinical realities rather than a single point in time."}}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.mylifecareplanning.com/"},
+        {"@type": "ListItem", "position": 2, "name": "What is Life Care Planning", "item": "https://www.mylifecareplanning.com/what-is-life-care-planning/"}
+      ]
+    }
+  ]
+});
 ---
 <BaseLayout
-  title="What Is Life Care Planning? — MyLifeCarePlanning.com"
-  description="Life care planning is a specialized, interdisciplinary methodology for projecting the lifetime care needs of individuals with catastrophic injuries or chronic illness. Learn how it works and why it matters."
+  title="What is Life Care Planning? | Medical-Legal Guide 2026 | LCP Directory"
+  description="Learn what life care planning is, its core methodologies, legal standards, and why physician-authored life care plans are essential for catastrophic injury cases. Updated 2026."
+  canonical="https://www.mylifecareplanning.com/what-is-life-care-planning/"
+  schema={schema}
 >
   <Header />
   <main class="flex-1">
@@ -18,7 +53,10 @@ import Footer from "../components/Footer.astro";
     <div class="page-container section-padding">
       <div class="max-w-3xl mx-auto prose prose-gray">
 
-        <p class="text-lg text-gray-600 leading-relaxed">Life care planning is a highly specialized, interdisciplinary, and multidimensional methodology designed to project the lifetime care and support needs of individuals who have experienced catastrophic injuries, significant personal physical disabilities, or chronic, progressive illnesses.</p>
+        <div class="not-prose mb-6 p-4 bg-brand-50 border border-brand-200 rounded-xl text-sm text-gray-700 leading-relaxed">
+          <strong class="text-brand-900">A Life Care Plan is a dynamic, evidence-based document that outlines the current and future medical, therapeutic, and support needs — with associated costs — for individuals who have experienced catastrophic injuries or chronic health conditions.</strong>
+        </div>
+        <p class="text-xs text-gray-500 mb-6">Updated: August 2026</p>
 
         <p>Developed originally within the fields of physical rehabilitation, occupational therapy, and case management, life care planning has evolved into a formalized clinical and methodology-driven specialty. It looks far beyond immediate, acute clinical needs to evaluate how an individual's unique physical or cognitive limitations, family environment, and the natural aging process will interact over their remaining life expectancy.</p>
 

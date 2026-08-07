@@ -11,11 +11,75 @@ const states = getAllStates().map((state) => ({
   name: state.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
   count: getProviderCountByState(state),
 }));
+
+const homepageSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.mylifecareplanning.com/#organization",
+      "name": "Physician Life Care Planning Directory",
+      "url": "https://www.mylifecareplanning.com/",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "info@mylifecareplanning.com",
+        "availableLanguage": "English"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.mylifecareplanning.com/#website",
+      "url": "https://www.mylifecareplanning.com/",
+      "name": "Physician Life Care Planning Directory",
+      "publisher": {"@id": "https://www.mylifecareplanning.com/#organization"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.mylifecareplanning.com/#breadcrumb",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.mylifecareplanning.com/"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.mylifecareplanning.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a Physician Life Care Planner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Physician Life Care Planner is a licensed physician, typically board-certified in Physical Medicine and Rehabilitation (PM&R), who develops comprehensive life care plans documenting future medical needs and associated costs for individuals with catastrophic injuries or chronic conditions. These plans are used in personal injury litigation, workers compensation, and insurance settlements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who uses a Physician Life Care Plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Physician Life Care Plans are used by personal injury attorneys, insurance companies, courts, and families of injured individuals. They provide objective, evidence-based documentation of future medical care costs for legal and insurance proceedings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find a Life Care Planner in my state?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use this directory to browse Physician Life Care Planners by state. Each state listing includes verified physician profiles with certification details and contact information."
+          }
+        }
+      ]
+    }
+  ]
+});
 ---
 
 <BaseLayout
-  title="Life Care Planner Directory - Find LCPs Across the USA"
-  description="Find qualified Life Care Planners across the United States. Browse by state to locate professionals in your area."
+  title="Physician Life Care Planners Directory | Expert Medical-Legal Life Care Planning"
+  description="Directory of board-certified Physician Life Care Planners (PM&R). Find vetted medical-legal experts for personal injury, medical malpractice, and catastrophic claim valuations."
+  canonical="https://www.mylifecareplanning.com/"
+  schema={homepageSchema}
 >
   <Header />
 
@@ -35,8 +99,11 @@ const states = getAllStates().map((state) => ({
       </div>
       <div class="relative page-container section-padding text-center">
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-          Find Life Care Planners Near You
+          Find Board-Certified Physician Life Care Planners
         </h1>
+        <div class="mt-4 mb-6 max-w-2xl mx-auto bg-white/10 border border-white/20 rounded-xl px-6 py-4 text-sm text-brand-100 leading-relaxed">
+          <strong class="text-white">The Physician Life Care Planning Directory connects legal, insurance, and medical teams with board-certified Physical Medicine and Rehabilitation (PM&R) physicians</strong> who author expert life care plans, future medical cost projections, and objective medical-legal analysis for catastrophic injury claims across the United States.
+        </div>
         <p class="mt-4 text-lg text-brand-200 max-w-2xl mx-auto">
           Connect with qualified Life Care Planners across the United States.
           Browse by state to locate a professional in your area.

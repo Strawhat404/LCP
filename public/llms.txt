@@ -1,0 +1,19 @@
+# LCP Directory
+
+> A verified medical-legal directory of board-certified Physician Life Care Planners (MD/DO) specializing in life care planning, future care cost projections, and expert testimony across US states and Canadian provinces.
+
+## What We List
+- Board-certified Physical Medicine and Rehabilitation (PM&R) physicians
+- Certified Life Care Planners (CLCP) and Certified Nurse Life Care Planners (CNLCP)
+- State-by-state physician availability across all 50 US states and Canadian provinces
+
+## Who Uses This Directory
+- Personal injury attorneys seeking expert witnesses
+- Insurance companies requiring objective future care cost assessments
+- Families coordinating long-term care
+
+## Sitemap
+https://www.mylifecareplanning.com/sitemap-index.xml
+
+## Contact
+info@mylifecareplanning.com
