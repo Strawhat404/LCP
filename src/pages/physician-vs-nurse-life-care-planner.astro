@@ -4,19 +4,21 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 ---
 <BaseLayout
-  title="Physician vs Nurse Life Care Planner — Which Do You Need?"
-  description="Compare physician (MD/DO) and nurse life care planners. Learn when to choose each type for personal injury, workers' compensation, and catastrophic injury cases."
+  title="Physician vs Nurse Life Care Planner — MyLifeCarePlanning.com"
+  description="Compare physician (MD/DO) and nurse life care planners. Understand the legal, clinical, and evidentiary differences and when each is appropriate for your case."
 >
   <Header />
   <main class="flex-1">
     <section class="bg-brand-900 text-white">
       <div class="page-container py-12">
-        <h1 class="text-3xl sm:text-4xl font-bold">Physician vs Nurse Life Care Planner</h1>
-        <p class="mt-3 text-brand-200 max-w-2xl">Understanding the differences and when each type is the right choice for your case.</p>
+        <h1 class="text-3xl sm:text-4xl font-bold">Physician vs. Nurse Life Care Planner</h1>
+        <p class="mt-3 text-brand-200 max-w-2xl">Understanding the legal, clinical, and evidentiary distinctions between physician and nurse life care planners.</p>
       </div>
     </section>
     <div class="page-container section-padding">
       <div class="max-w-3xl mx-auto">
+
+        <!-- Comparison table -->
         <div class="overflow-x-auto mb-10">
           <table class="w-full text-sm border-collapse">
             <thead>
@@ -32,9 +34,9 @@ import Footer from "../components/Footer.astro";
                 ["Interpret imaging", "Yes", "Limited"],
                 ["Expert witness at trial", "Strong", "Good"],
                 ["Daubert challenge resistance", "Higher", "Moderate"],
-                ["Cost", "Higher", "Lower"],
-                ["Best for", "Catastrophic injury, TBI, SCI", "Moderate injury, disability mgmt"],
-                ["Certification", "CLCP, CPLCP", "CNLCP, CLCP"],
+                ["Frye standard (NY etc.)", "Stronger", "Subject to treating physician reliance"],
+                ["Certifications", "CLCP®, MSCC™", "CNLCP, CLCP®"],
+                ["Best for", "Catastrophic injury, TBI, SCI, high-value cases", "Moderate injury, care coordination, cost efficiency"],
               ].map(([criteria, physician, nurse]) => (
                 <tr class="even:bg-gray-50">
                   <td class="px-4 py-3 font-medium text-gray-800">{criteria}</td>
@@ -47,14 +49,23 @@ import Footer from "../components/Footer.astro";
         </div>
 
         <div class="prose prose-gray max-w-none">
-          <h2>When to choose a physician life care planner</h2>
-          <p>Choose a physician when the case involves catastrophic injuries likely to face aggressive Daubert challenges — traumatic brain injury, spinal cord injury, severe burns, amputations, or complex multi-system trauma. Attorneys and insurance carriers dealing with high-value settlements generally prefer a physician's clinical authority to anchor the plan.</p>
 
-          <h2>When a nurse life care planner may be sufficient</h2>
-          <p>For moderate injury cases, workers' compensation matters, or situations where cost is a significant factor, a certified nurse life care planner with a CNLCP credential can produce a thorough and defensible plan. Nurse planners often have deep day-to-day clinical care experience that translates well into practical care recommendations.</p>
+          <p class="text-lg text-gray-600 leading-relaxed">In the medical-legal and rehabilitation fields, a common question arises regarding the distinct roles, qualifications, and evidentiary weight of a physician life care planner compared to a nurse life care planner. While both roles are vital to the life care planning ecosystem, they operate within fundamentally different legal, clinical, and regulatory boundaries.</p>
 
-          <h2>Can you use both?</h2>
-          <p>Some legal teams retain a physician to perform the clinical evaluation and a nurse life care planner to develop the detailed plan document, combining the strengths of both credentials. This collaborative approach is increasingly common in high-value cases.</p>
+          <p>A nurse life care planner (typically a Registered Nurse holding CNLCP or CLCP® credentials) is an expert in rehabilitation nursing, coordination of care, and cost-assessment mechanics. However, state nursing boards and nurse practice acts define a nurse's professional scope of practice, which centers on patient care coordination and nursing assessments rather than independent medical diagnosis or prognosis.</p>
+
+          <h2>Why the Distinction Matters in Court</h2>
+          <p>This distinction becomes critical when a life care plan is challenged in a court of law or during a serious insurance coverage audit. The legal standards for scientific admissibility vary: <em>Daubert</em> focuses on the relevance and reliability of the expert's methodology, while <em>Frye</em> (retained in select jurisdictions like New York) centers on whether the methodology is "generally accepted" within the relevant scientific community.</p>
+          <p>Because nurses do not possess independent medical diagnosing or prescribing authority under state medical practice acts, a nurse life care planner cannot independently testify to a patient's medical diagnosis, prognosis, or the medical necessity of future invasive treatments, such as multi-level spinal fusions. To make those projections admissible, a nurse planner must rely entirely on the documented recommendations of the patient's treating physicians.</p>
+
+          <h2>Hybrid Workflows: Getting the Best of Both</h2>
+          <p>To optimize efficiency without sacrificing admissibility, organizations can implement hybrid workflows. Under this model, nurse life care planners perform the foundational care mechanics, costing research, and initial coordination of care under the direct clinical oversight and final signing authority of the board-certified physician planner.</p>
+          <p>The physician reviews the compiled file, verifies the diagnostic consistency of the clinical presentation, and signs off as the ultimate author of the plan. This clinical collaboration leverages the strengths of both professions while ensuring that the clinical reasoning is supported by independent, diagnosing-level clinical authority, subject to state-specific regulations and the standard of practice in that jurisdiction.</p>
+
+          <h2>When to Choose Each</h2>
+          <p><strong>Choose a physician life care planner</strong> when the case involves catastrophic injuries likely to face aggressive Daubert or Frye challenges — traumatic brain injury, spinal cord injury, severe burns, amputations, or complex multi-system trauma. Attorneys and insurance carriers dealing with high-value settlements prefer a physician's independent clinical authority to anchor the plan.</p>
+          <p><strong>A nurse life care planner may be sufficient</strong> for moderate injury cases, workers' compensation matters, or care coordination scenarios where foundational costing and discharge planning are the primary deliverables.</p>
+
         </div>
 
         <div class="mt-10 p-6 bg-brand-50 border border-brand-200 rounded-xl text-center">

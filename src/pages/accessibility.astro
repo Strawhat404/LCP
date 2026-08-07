@@ -3,31 +3,60 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 ---
-<BaseLayout title="Accessibility Statement — MyLifeCarePlanning.com" description="Accessibility statement for MyLifeCarePlanning.com.">
+
+<BaseLayout
+  title="Accessibility Statement - MyLifeCarePlanning.com"
+  description="Accessibility Statement for MyLifeCarePlanning.com. Learn about our commitment to inclusive design and how to request assistance."
+>
   <Header />
+
   <main class="flex-1">
+    <section class="bg-brand-900 text-white">
+      <div class="page-container py-10">
+        <h1 class="text-3xl font-bold">Accessibility Statement</h1>
+        <div class="flex flex-wrap items-center gap-3 mt-3">
+          <span class="inline-flex items-center gap-1.5 bg-white/10 text-brand-200 text-xs font-medium px-3 py-1 rounded-full">Effective Date: August 1, 2026</span>
+          <span class="inline-flex items-center gap-1.5 bg-white/10 text-brand-200 text-xs font-medium px-3 py-1 rounded-full">Version 1.1</span>
+        </div>
+      </div>
+    </section>
+
     <div class="page-container section-padding">
-      <div class="max-w-3xl mx-auto prose prose-gray">
-        <h1>Accessibility Statement</h1>
-        <p class="text-gray-500 text-sm">Last updated: August 2026</p>
-        <p>MyLifeCarePlanning.com is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply relevant accessibility standards.</p>
-        <h2>Measures Taken</h2>
-        <ul>
-          <li>Semantic HTML structure for screen reader compatibility</li>
-          <li>ARIA labels on interactive elements</li>
-          <li>Sufficient color contrast ratios throughout the site</li>
-          <li>Keyboard navigable interface</li>
-          <li>Alt text on all informational images</li>
-          <li>Responsive design for all screen sizes</li>
-        </ul>
-        <h2>Known Limitations</h2>
-        <p>We are aware of some accessibility limitations on this site and are actively working to address them. If you experience any difficulty accessing content, please contact us.</p>
-        <h2>Feedback</h2>
-        <p>We welcome feedback on the accessibility of this site. Please contact us at info@mylifecareplanning.com if you encounter accessibility barriers.</p>
-        <h2>Formal Complaints</h2>
-        <p>If you are not satisfied with our response, you may contact the relevant national authority responsible for enforcing accessibility laws in your jurisdiction.</p>
+      <div class="max-w-3xl mx-auto">
+        <div class="space-y-10 text-sm text-gray-700 leading-relaxed">
+
+          <section>
+            <h2 class="text-base font-bold text-gray-900 mb-1 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-brand-100 text-brand-700 text-xs font-bold flex items-center justify-center flex-shrink-0">1</span>
+              Commitment to Inclusive Design
+            </h2>
+            <p class="pl-8">MyLifeCarePlanning.com strives to ensure that the medical-legal landscape is accessible to all. We aim for alignment with established accessibility standards to ensure our directory is compatible with keyboard navigation and screen-reading technologies.</p>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-gray-900 mb-1 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-brand-100 text-brand-700 text-xs font-bold flex items-center justify-center flex-shrink-0">2</span>
+              Limitations and Remediation
+            </h2>
+            <p class="pl-8">While we audit our interface regularly, certain third-party elements (such as maps) may present barriers. We are committed to a process of continuous improvement and will work to remediate any identified obstacles as technology evolves.</p>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-gray-900 mb-1 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-brand-100 text-brand-700 text-xs font-bold flex items-center justify-center flex-shrink-0">3</span>
+              Feedback and Alternative Formats
+            </h2>
+            <p class="pl-8">If you encounter difficulty accessing any part of MyLifeCarePlanning.com, please contact <a href="mailto:info@mylifecareplanning.com" class="text-brand-700 font-medium hover:underline">info@mylifecareplanning.com</a>. We will make every reasonable effort to provide the requested information in an alternative format to accommodate your needs.</p>
+          </section>
+
+          <div class="border-t border-gray-200 pt-6">
+            <p class="text-xs text-gray-500">For accessibility assistance, contact <a href="mailto:info@mylifecareplanning.com" class="text-brand-700 hover:underline">info@mylifecareplanning.com</a>.</p>
+          </div>
+
+        </div>
       </div>
     </div>
   </main>
+
   <Footer />
 </BaseLayout>

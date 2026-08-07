@@ -3,27 +3,75 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 ---
-<BaseLayout title="Do Not Sell or Share My Information — MyLifeCarePlanning.com" description="California residents may opt out of the sale or sharing of personal information under CCPA.">
+
+<BaseLayout
+  title="Do Not Sell or Share My Information - MyLifeCarePlanning.com"
+  description="Do Not Sell or Share My Information policy for MyLifeCarePlanning.com. Learn how to opt out of data sharing."
+>
   <Header />
+
   <main class="flex-1">
+    <section class="bg-brand-900 text-white">
+      <div class="page-container py-10">
+        <h1 class="text-3xl font-bold">Do Not Sell or Share My Information</h1>
+        <div class="flex flex-wrap items-center gap-3 mt-3">
+          <span class="inline-flex items-center gap-1.5 bg-white/10 text-brand-200 text-xs font-medium px-3 py-1 rounded-full">Effective Date: August 1, 2026</span>
+          <span class="inline-flex items-center gap-1.5 bg-white/10 text-brand-200 text-xs font-medium px-3 py-1 rounded-full">Version 1.1</span>
+        </div>
+      </div>
+    </section>
+
     <div class="page-container section-padding">
-      <div class="max-w-3xl mx-auto prose prose-gray">
-        <h1>Do Not Sell or Share My Personal Information</h1>
-        <p class="text-gray-500 text-sm">Last updated: August 2026</p>
-        <p>This page is provided for California residents under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA).</p>
-        <h2>Your Rights</h2>
-        <p>California residents have the right to opt out of the sale or sharing of their personal information to third parties for cross-context behavioral advertising purposes.</p>
-        <h2>What We Collect</h2>
-        <p>MyLifeCarePlanning.com is a static informational directory. We do not operate user accounts, require registration, or collect personal information beyond standard server logs and analytics data that may be processed by third-party services.</p>
-        <h2>How to Opt Out</h2>
-        <p>To submit a do-not-sell or do-not-share request, or to request deletion of any personal data we may hold, contact us at:</p>
-        <p><strong>Email:</strong> info@mylifecareplanning.com<br/>
-        <strong>Subject line:</strong> CCPA Privacy Request</p>
-        <p>We will respond to verified requests within 45 days as required by law.</p>
-        <h2>Additional Rights</h2>
-        <p>California residents may also have the right to know what personal information we collect, request correction of inaccurate information, and request deletion. Contact us at the address above to exercise any of these rights.</p>
+      <div class="max-w-3xl mx-auto">
+        <div class="space-y-10 text-sm text-gray-700 leading-relaxed">
+
+          <!-- CTA box -->
+          <div class="bg-brand-50 border border-brand-200 rounded-xl p-6">
+            <h2 class="text-base font-bold text-brand-900 mb-2">Submit a Do Not Share Request</h2>
+            <p class="text-brand-800 mb-4">To opt out of data sharing, email us directly with your name and the listing or information you wish to have suppressed.</p>
+            <a
+              href="mailto:info@mylifecareplanning.com?subject=Do Not Sell or Share Request"
+              class="inline-flex items-center gap-2 bg-brand-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-brand-800 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              Email Your Request
+            </a>
+          </div>
+
+          <section>
+            <h2 class="text-base font-bold text-gray-900 mb-1 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-brand-100 text-brand-700 text-xs font-bold flex items-center justify-center flex-shrink-0">1</span>
+              Respecting Privacy and Professional Autonomy
+            </h2>
+            <p class="pl-8">In accordance with state laws like the CCPA, MyLifeCarePlanning.com does not sell your personal or professional data to third-party marketers. This policy applies to both site visitors and the professionals listed in our national database.</p>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-gray-900 mb-1 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-brand-100 text-brand-700 text-xs font-bold flex items-center justify-center flex-shrink-0">2</span>
+              Exercising Your Right to Opt-Out
+            </h2>
+            <p class="pl-8">Visitors and listed professionals may submit a "Do Not Share" request by emailing <a href="mailto:info@mylifecareplanning.com" class="text-brand-700 font-medium hover:underline">info@mylifecareplanning.com</a>. For professionals, this includes the right to have your business contact information removed from public view and placed on a <strong>permanent suppression list</strong>.</p>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-gray-900 mb-1 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-brand-100 text-brand-700 text-xs font-bold flex items-center justify-center flex-shrink-0">3</span>
+              Minimal Necessary Sharing
+            </h2>
+            <p class="pl-8">We share data only with service providers required for site operations. We do not engage in silent model training or unauthorized secondary analytics. Any internal performance tracking is conducted on a de-identified basis.</p>
+          </section>
+
+          <div class="border-t border-gray-200 pt-6">
+            <p class="text-xs text-gray-500">For opt-out requests, contact <a href="mailto:info@mylifecareplanning.com" class="text-brand-700 hover:underline">info@mylifecareplanning.com</a>.</p>
+          </div>
+
+        </div>
       </div>
     </div>
   </main>
+
   <Footer />
 </BaseLayout>
