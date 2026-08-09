@@ -23,27 +23,52 @@ import Footer from "../components/Footer.astro";
           <table class="w-full text-sm border-collapse">
             <thead>
               <tr class="bg-brand-900 text-white">
-                <th class="px-4 py-3 text-left font-semibold">Criteria</th>
-                <th class="px-4 py-3 text-left font-semibold">Physician (MD/DO)</th>
-                <th class="px-4 py-3 text-left font-semibold">Nurse (RN/CNLCP)</th>
+                <th class="px-4 py-3 text-left font-semibold w-1/4">Criteria</th>
+                <th class="px-4 py-3 text-left font-semibold w-3/8">Physician (MD/DO)</th>
+                <th class="px-4 py-3 text-left font-semibold w-3/8">Nurse (RN/CNLCP)</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-              {[
-                ["Independent diagnosis", "Yes", "No — requires physician referral"],
-                ["Interpret imaging", "Yes", "Limited"],
-                ["Expert witness at trial", "Strong", "Good"],
-                ["Daubert challenge resistance", "Higher", "Moderate"],
-                ["Frye standard (NY etc.)", "Stronger", "Subject to treating physician reliance"],
-                ["Certifications", "CLCP®, MSCC™", "CNLCP, CLCP®"],
-                ["Best for", "Catastrophic injury, TBI, SCI, high-value cases", "Moderate injury, care coordination, cost efficiency"],
-              ].map(([criteria, physician, nurse]) => (
-                <tr class="even:bg-gray-50">
-                  <td class="px-4 py-3 font-medium text-gray-800">{criteria}</td>
-                  <td class="px-4 py-3 text-gray-700">{physician}</td>
-                  <td class="px-4 py-3 text-gray-700">{nurse}</td>
-                </tr>
-              ))}
+              <tr class="even:bg-gray-50">
+                <td class="px-4 py-3 font-medium text-gray-800 align-top">Independent diagnosis</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Yes — within licensure, specialty, and training</td>
+                <td class="px-4 py-3 text-gray-700 align-top">No for an RN; medical diagnoses and treatment recommendations should be supported by treating-provider records/orders. (An NP/APRN is different from an RN and may diagnose depending on state scope.)</td>
+              </tr>
+              <tr class="even:bg-gray-50">
+                <td class="px-4 py-3 font-medium text-gray-800 align-top">Interpret imaging</td>
+                <td class="px-4 py-3 text-gray-700 align-top">May interpret imaging within training and scope; formal diagnostic interpretation is commonly performed by radiologists</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Limited — an RN generally does not independently interpret diagnostic imaging; may review documented findings for care-planning purposes</td>
+              </tr>
+              <tr class="even:bg-gray-50">
+                <td class="px-4 py-3 font-medium text-gray-800 align-top">Expert witness at trial</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Strong for medical diagnosis, prognosis, causation, and future-treatment opinions within specialty</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Strong for nursing standards, care coordination, long-term care needs, and life-care-planning opinions within nursing expertise</td>
+              </tr>
+              <tr class="even:bg-gray-50">
+                <td class="px-4 py-3 font-medium text-gray-800 align-top">Daubert challenge resistance</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Case-specific — not inherently higher. Strong where credentials, specialty fit, records, and reliable methodology support the opinion</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Case-specific — not inherently lower. Strong where the planner stays within nursing scope and ties medical recommendations to treating-provider evidence and reliable methodology</td>
+              </tr>
+              <tr class="even:bg-gray-50">
+                <td class="px-4 py-3 font-medium text-gray-800 align-top">Frye standard (NY, etc.)</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Not automatically stronger; Frye focuses on general acceptance of the underlying scientific methodology, not the witness's degree alone</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Same standard. The opinion's methodology, factual support, scope, and qualifications matter more than whether the planner is an RN or physician</td>
+              </tr>
+              <tr class="even:bg-gray-50">
+                <td class="px-4 py-3 font-medium text-gray-800 align-top">Certifications</td>
+                <td class="px-4 py-3 text-gray-700 align-top">CLCP® may be held by qualified health-care professionals; CPLCP™ is a physician-specific advanced credential</td>
+                <td class="px-4 py-3 text-gray-700 align-top">CNLCP is nursing-specific; CLCP® may also be available to qualified nurse life care planners</td>
+              </tr>
+              <tr class="even:bg-gray-50">
+                <td class="px-4 py-3 font-medium text-gray-800 align-top">MSCC™</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Relevant to Medicare Set-Aside consulting, not a core life-care-planning credential</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Same — MSCC™ is a Medicare Set-Aside Certified Consultant credential, not a credential that establishes life-care-planning or medical-diagnosis authority</td>
+              </tr>
+              <tr class="even:bg-gray-50">
+                <td class="px-4 py-3 font-medium text-gray-800 align-top">Best for</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Catastrophic injury, TBI, SCI, complex medical prognosis, disputed future treatment, causation, and high-value cases where a physician's specialty opinion is needed</td>
+                <td class="px-4 py-3 text-gray-700 align-top">Moderate to catastrophic injury, long-term care coordination, translating provider recommendations into services/equipment, rehabilitation planning, and cost-efficient life-care planning</td>
+              </tr>
             </tbody>
           </table>
         </div>

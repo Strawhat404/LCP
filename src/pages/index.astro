@@ -3,13 +3,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import USAMapSVG from "../components/USAMapSVG.astro";
-import LocationMap from "../components/LocationMap.astro";
-import { getAllStates, getProviderCountByState } from "../utils/data";
+import { getAllStates, getProviderCountByState, getPhysicianCountByState } from "../utils/data";
 
 const states = getAllStates().map((state) => ({
   slug: state,
   name: state.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
   count: getProviderCountByState(state),
+  physicianCount: getPhysicianCountByState(state),
 }));
 
 const homepageSchema = JSON.stringify({
@@ -196,20 +196,43 @@ const homepageSchema = JSON.stringify({
       </div>
     </section>
 
-    <!-- Maps section: Leaflet map first, then compact SVG below -->
+    <!-- Maps section -->
     <section class="bg-gray-50">
       <div class="page-container section-padding">
         <div class="text-center mb-8">
           <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">Find Life Care Planners Near You</h2>
-          <p class="text-gray-600 max-w-xl mx-auto">Hover over any pin to see provider count. Click to browse that state.</p>
+          <p class="text-gray-600 max-w-xl mx-auto">Click any state to browse Life Care Planners in your area.</p>
         </div>
 
-        <!-- Leaflet marker map — full width, prominent -->
-        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-4 mb-6">
-          <LocationMap />
+        <!-- Stats bar -->
+        <div class="bg-brand-900 rounded-xl p-6 mb-6 text-white">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+            <div>
+              <div class="text-3xl font-bold">{states.reduce((sum, s) => sum + s.count, 0)}</div>
+              <div class="text-brand-200 text-sm mt-1">Qualified Planners</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold">{states.reduce((sum, s) => sum + (s.physicianCount || 0), 0)}</div>
+              <div class="text-brand-200 text-sm mt-1">Physician LCPs</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold">{states.length}</div>
+              <div class="text-brand-200 text-sm mt-1">States &amp; Provinces</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold">Free</div>
+              <div class="text-brand-200 text-sm mt-1">Directory Access</div>
+            </div>
+          </div>
         </div>
 
-
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
+          <USAMapSVG
+            states={states}
+            basePath="/physician-life-care-planners"
+            tooltipLabel="LCPs"
+          />
+        </div>
       </div>
     </section>
 
