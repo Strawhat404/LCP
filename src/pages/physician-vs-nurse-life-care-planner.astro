@@ -2,16 +2,44 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Physician vs Nurse Life Care Planner",
+  "description": "Compare physician (MD/DO) and nurse life care planners. Understand the legal, clinical, and evidentiary differences and when each is appropriate for your case.",
+  "author": {
+    "@type": "Organization",
+    "name": "Physician Life Care Planning Directory"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Physician Life Care Planning Directory",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.mylifecareplanning.com/LCP-logo-transparent.png"
+    }
+  },
+  "datePublished": "2024-01-15T00:00:00Z",
+  "dateModified": "2026-08-11T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.mylifecareplanning.com/physician-vs-nurse-life-care-planner/"
+  }
+});
 ---
 <BaseLayout
   title="Physician vs Nurse Life Care Planner — MyLifeCarePlanning.com"
   description="Compare physician (MD/DO) and nurse life care planners. Understand the legal, clinical, and evidentiary differences and when each is appropriate for your case."
+  canonical="https://www.mylifecareplanning.com/physician-vs-nurse-life-care-planner/"
+  schema={articleSchema}
 >
   <Header />
   <main class="flex-1">
     <section class="bg-brand-900 text-white">
       <div class="page-container py-12">
         <h1 class="text-3xl sm:text-4xl font-bold">Physician vs. Nurse Life Care Planner</h1>
+        <p class="text-xs text-gray-400 mt-2 mb-1">Updated: August 2026</p>
         <p class="mt-3 text-brand-200 max-w-2xl">Understanding the legal, clinical, and evidentiary distinctions between physician and nurse life care planners.</p>
       </div>
     </section>
