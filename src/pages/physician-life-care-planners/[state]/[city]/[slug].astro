@@ -95,7 +95,7 @@ const profileSchema = JSON.stringify({
       <div class="card p-6 sm:p-8">
         <div class="flex flex-col sm:flex-row gap-6 items-start">
           <img
-            src={provider.image}
+            src={`/avatars/${provider.slug}.svg`}
             alt={provider.name}
             class="w-28 h-28 sm:w-36 sm:h-36 rounded-full object-cover bg-gray-200 flex-shrink-0"
             width="144" height="144"

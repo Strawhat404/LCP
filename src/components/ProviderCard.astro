@@ -18,7 +18,7 @@ const cityName = provider.city.split("-").map(w => w.charAt(0).toUpperCase() + w
   <a href={`/physician-life-care-planners/${provider.state}/${provider.city}/${provider.slug}`} class="flex-shrink-0">
     <div class="relative">
       <img
-        src={provider.image}
+        src={`/avatars/${provider.slug}.svg`}
         alt={provider.name}
         class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover bg-gray-200"
         width="80" height="80" loading="lazy"

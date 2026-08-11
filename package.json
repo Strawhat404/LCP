@@ -7,11 +7,14 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "import-data": "python3 scripts/import.py"
+    "import-data": "python3 scripts/import.py",
+    "generate-avatars": "node scripts/generate-avatars.js",
+    "validate-sitemap": "node scripts/validate-sitemap.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/sitemap": "3.1.6",
+    "@fontsource/inter": "^5.3.0",
     "astro": "^4.16.0",
     "typescript": "^5.6.0"
   },

@@ -25,6 +25,10 @@ const articleSchema = JSON.stringify({
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://www.mylifecareplanning.com/how-much-does-a-life-care-plan-cost/"
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".intro-definition"]
   }
 });
 ---
@@ -46,7 +50,7 @@ const articleSchema = JSON.stringify({
     <div class="page-container section-padding">
       <div class="max-w-3xl mx-auto prose prose-gray">
 
-        <p class="text-lg text-gray-600 leading-relaxed">The total cost associated with a life care plan involves two separate financial dimensions: the cost of the future medical care projected for the patient, and the professional fees charged by the life care planner to research, draft, and authenticate the document.</p>
+        <p class="intro-definition text-lg text-gray-600 leading-relaxed">The total cost associated with a life care plan involves two separate financial dimensions: the cost of the future medical care projected for the patient, and the professional fees charged by the life care planner to research, draft, and authenticate the document.</p>
 
         <h2>Professional Fees: Flat-Fee FMV Structure</h2>
         <p>Under a compliant medical-legal operating model, the professional fees paid to the physician life care planner must be structured strictly as a flat fee or a time-based rate benchmarked at Fair Market Value (FMV). Under standard professional engagement models, typical flat fees for comprehensive physician-authored life care plans range from standard single-region cases (such as spine-only injuries) to more complex cases involving traumatic brain injury (TBI), spinal cord injury (SCI), or multiple injury areas.</p>

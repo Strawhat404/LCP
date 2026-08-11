@@ -30,12 +30,15 @@ const { title, description, hidePlatformBanner = false, canonical, schema } = As
     <meta name="ClaudeBot" content="index, follow">
     <meta name="OAI-SearchBot" content="index, follow">
     {canonical && <link rel="canonical" href={canonical} />}
+    
+    <!-- Hreflang tags for US/Canada multi-region support -->
+    <link rel="alternate" hreflang="en-US" href={canonical || Astro.url.href} />
+    <link rel="alternate" hreflang="en-CA" href={canonical || Astro.url.href} />
+    <link rel="alternate" hreflang="x-default" href={canonical || Astro.url.href} />
+    
     {schema && <script type="application/ld+json" set:html={schema} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Load Google Fonts non-blocking to avoid render delay -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" /></noscript>
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />
