@@ -51,55 +51,55 @@ const articleSchema = JSON.stringify({
       <div class="max-w-3xl mx-auto">
 
         <!-- Comparison table -->
-        <div class="overflow-x-auto mb-10">
+        <div class="overflow-x-auto mb-10 shadow-lg rounded-lg">
           <table class="w-full text-sm border-collapse">
             <thead>
-              <tr class="bg-brand-900 text-white">
-                <th class="px-4 py-3 text-left font-semibold w-1/4">Criteria</th>
-                <th class="px-4 py-3 text-left font-semibold w-3/8">Physician (MD/DO)</th>
-                <th class="px-4 py-3 text-left font-semibold w-3/8">Nurse (RN/CNLCP)</th>
+              <tr class="bg-gradient-to-r from-brand-900 to-brand-800 text-white">
+                <th class="px-4 py-4 text-left font-bold w-1/4">Criteria</th>
+                <th class="px-4 py-4 text-left font-bold w-3/8">Physician (MD/DO)</th>
+                <th class="px-4 py-4 text-left font-bold w-3/8">Nurse (RN/CNLCP)</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200">
-              <tr class="even:bg-gray-50">
-                <td class="px-4 py-3 font-medium text-gray-800 align-top">Authority to provide independent medical diagnosis</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Yes — within licensure, specialty, and training</td>
-                <td class="px-4 py-3 text-gray-700 align-top">No for an RN; medical diagnoses and treatment recommendations should be supported by treating-provider records/orders. (An NP/APRN is different from an RN and may diagnose depending on state scope.)</td>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr class="hover:bg-brand-50 transition-colors duration-150 even:bg-gray-50">
+                <td class="px-4 py-4 font-semibold text-gray-900 align-top">Authority to provide independent medical diagnosis</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Yes — within licensure, specialty, and training</td>
+                <td class="px-4 py-4 text-gray-700 align-top">No for an RN; medical diagnoses and treatment recommendations should be supported by treating-provider records/orders. (An NP/APRN is different from an RN and may diagnose depending on state scope.)</td>
               </tr>
-              <tr class="even:bg-gray-50">
-                <td class="px-4 py-3 font-medium text-gray-800 align-top">Interpret imaging</td>
-                <td class="px-4 py-3 text-gray-700 align-top">May interpret imaging within training and scope; formal diagnostic interpretation is commonly performed by radiologists</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Limited — an RN generally does not independently interpret diagnostic imaging; may review documented findings for care-planning purposes</td>
+              <tr class="hover:bg-brand-50 transition-colors duration-150 even:bg-gray-50">
+                <td class="px-4 py-4 font-semibold text-gray-900 align-top">Interpret imaging</td>
+                <td class="px-4 py-4 text-gray-700 align-top">May interpret imaging within training and scope; formal diagnostic interpretation is commonly performed by radiologists</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Limited — an RN generally does not independently interpret diagnostic imaging; may review documented findings for care-planning purposes</td>
               </tr>
-              <tr class="even:bg-gray-50">
-                <td class="px-4 py-3 font-medium text-gray-800 align-top">Expert witness at trial</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Strong for medical diagnosis, prognosis, causation, and future-treatment opinions within specialty</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Strong for nursing standards, care coordination, long-term care needs, and life-care-planning opinions within nursing expertise</td>
+              <tr class="hover:bg-brand-50 transition-colors duration-150 even:bg-gray-50">
+                <td class="px-4 py-4 font-semibold text-gray-900 align-top">Expert witness at trial</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Strong for medical diagnosis, prognosis, causation, and future-treatment opinions within specialty</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Strong for nursing standards, care coordination, long-term care needs, and life-care-planning opinions within nursing expertise</td>
               </tr>
-              <tr class="even:bg-gray-50">
-                <td class="px-4 py-3 font-medium text-gray-800 align-top">Daubert challenge resistance</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Case-specific — not inherently higher. Strong where credentials, specialty fit, records, and reliable methodology support the opinion</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Case-specific — not inherently lower. Strong where the planner stays within nursing scope and ties medical recommendations to treating-provider evidence and reliable methodology</td>
+              <tr class="hover:bg-brand-50 transition-colors duration-150 even:bg-gray-50">
+                <td class="px-4 py-4 font-semibold text-gray-900 align-top">Daubert challenge resistance</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Case-specific — not inherently higher. Strong where credentials, specialty fit, records, and reliable methodology support the opinion</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Case-specific — not inherently lower. Strong where the planner stays within nursing scope and ties medical recommendations to treating-provider evidence and reliable methodology</td>
               </tr>
-              <tr class="even:bg-gray-50">
-                <td class="px-4 py-3 font-medium text-gray-800 align-top">Frye standard (NY, etc.)</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Not automatically stronger; Frye focuses on general acceptance of the underlying scientific methodology, not the witness's degree alone</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Same standard. The opinion's methodology, factual support, scope, and qualifications matter more than whether the planner is an RN or physician</td>
+              <tr class="hover:bg-brand-50 transition-colors duration-150 even:bg-gray-50">
+                <td class="px-4 py-4 font-semibold text-gray-900 align-top">Frye standard (NY, etc.)</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Not automatically stronger; Frye focuses on general acceptance of the underlying scientific methodology, not the witness's degree alone</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Same standard. The opinion's methodology, factual support, scope, and qualifications matter more than whether the planner is an RN or physician</td>
               </tr>
-              <tr class="even:bg-gray-50">
-                <td class="px-4 py-3 font-medium text-gray-800 align-top">Certifications</td>
-                <td class="px-4 py-3 text-gray-700 align-top">CLCP® may be held by qualified health-care professionals; CPLCP™ is a physician-specific advanced credential</td>
-                <td class="px-4 py-3 text-gray-700 align-top">CNLCP is nursing-specific; CLCP® may also be available to qualified nurse life care planners</td>
+              <tr class="hover:bg-brand-50 transition-colors duration-150 even:bg-gray-50">
+                <td class="px-4 py-4 font-semibold text-gray-900 align-top">Certifications</td>
+                <td class="px-4 py-4 text-gray-700 align-top">CLCP® may be held by qualified health-care professionals; CPLCP™ is a physician-specific advanced credential</td>
+                <td class="px-4 py-4 text-gray-700 align-top">CNLCP is nursing-specific; CLCP® may also be available to qualified nurse life care planners</td>
               </tr>
-              <tr class="even:bg-gray-50">
-                <td class="px-4 py-3 font-medium text-gray-800 align-top">MSCC™</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Relevant to Medicare Set-Aside consulting, not a core life-care-planning credential</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Same — MSCC™ is a Medicare Set-Aside Certified Consultant credential, not a credential that establishes life-care-planning or medical-diagnosis authority</td>
+              <tr class="hover:bg-brand-50 transition-colors duration-150 even:bg-gray-50">
+                <td class="px-4 py-4 font-semibold text-gray-900 align-top">MSCC™</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Relevant to Medicare Set-Aside consulting, not a core life-care-planning credential</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Same — MSCC™ is a Medicare Set-Aside Certified Consultant credential, not a credential that establishes life-care-planning or medical-diagnosis authority</td>
               </tr>
-              <tr class="even:bg-gray-50">
-                <td class="px-4 py-3 font-medium text-gray-800 align-top">Best for</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Catastrophic injury, TBI, SCI, complex medical prognosis, disputed future treatment, causation, and high-value cases where a physician's specialty opinion is needed</td>
-                <td class="px-4 py-3 text-gray-700 align-top">Moderate to catastrophic injury, long-term care coordination, translating provider recommendations into services/equipment, rehabilitation planning, and cost-efficient life-care planning</td>
+              <tr class="hover:bg-brand-50 transition-colors duration-150 even:bg-gray-50">
+                <td class="px-4 py-4 font-semibold text-gray-900 align-top">Best for</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Catastrophic injury, TBI, SCI, complex medical prognosis, disputed future treatment, causation, and high-value cases where a physician's specialty opinion is needed</td>
+                <td class="px-4 py-4 text-gray-700 align-top">Moderate to catastrophic injury, long-term care coordination, translating provider recommendations into services/equipment, rehabilitation planning, and cost-efficient life-care planning</td>
               </tr>
             </tbody>
           </table>
@@ -111,15 +111,15 @@ const articleSchema = JSON.stringify({
 
           <p>A nurse life care planner (typically a Registered Nurse holding CNLCP or CLCP® credentials) is an expert in rehabilitation nursing, coordination of care, and cost-assessment mechanics. However, state nursing boards and nurse practice acts define a nurse's professional scope of practice, which centers on patient care coordination and nursing assessments rather than independent medical diagnosis or prognosis.</p>
 
-          <h2>Why the Distinction Matters in Court</h2>
+          <h2 class="!text-2xl !font-bold !text-brand-900 !mt-8 !mb-4">Why the Distinction Matters in Court</h2>
           <p>This distinction becomes critical when a life care plan is challenged in a court of law or during a serious insurance coverage audit. The legal standards for scientific admissibility vary: <em>Daubert</em> focuses on the relevance and reliability of the expert's methodology, while <em>Frye</em> (retained in select jurisdictions like New York) centers on whether the methodology is "generally accepted" within the relevant scientific community.</p>
           <p>Because nurses do not possess independent medical diagnosing or prescribing authority under state medical practice acts, a nurse life care planner cannot independently testify to a patient's medical diagnosis, prognosis, or the medical necessity of future invasive treatments, such as multi-level spinal fusions. To make those projections admissible, a nurse planner must rely entirely on the documented recommendations of the patient's treating physicians.</p>
 
-          <h2>Hybrid Workflows: Getting the Best of Both</h2>
+          <h2 class="!text-2xl !font-bold !text-brand-900 !mt-8 !mb-4">Hybrid Workflows: Getting the Best of Both</h2>
           <p>To optimize efficiency without sacrificing admissibility, organizations can implement hybrid workflows. Under this model, nurse life care planners perform the foundational care mechanics, costing research, and initial coordination of care under the direct clinical oversight and final signing authority of the board-certified physician planner.</p>
           <p>The physician reviews the compiled file, verifies the diagnostic consistency of the clinical presentation, and signs off as the ultimate author of the plan. This clinical collaboration leverages the strengths of both professions while ensuring that the clinical reasoning is supported by independent, diagnosing-level clinical authority, subject to state-specific regulations and the standard of practice in that jurisdiction.</p>
 
-          <h2>When to Choose Each</h2>
+          <h2 class="!text-2xl !font-bold !text-brand-900 !mt-8 !mb-4">When to Choose Each</h2>
           <p><strong>Choose a physician life care planner</strong> when the case involves catastrophic injuries likely to face aggressive Daubert or Frye challenges — traumatic brain injury, spinal cord injury, severe burns, amputations, or complex multi-system trauma. Attorneys and insurance carriers dealing with high-value settlements prefer a physician's independent clinical authority to anchor the plan.</p>
           <p><strong>A nurse life care planner may be sufficient</strong> for moderate injury cases, workers' compensation matters, or care coordination scenarios where foundational costing and discharge planning are the primary deliverables.</p>
 
