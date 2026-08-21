@@ -25,7 +25,7 @@ const profileSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Physician",
+      "@type": ["Physician", "LocalBusiness"],
       "@id": `https://www.mylifecareplanning.com/physician-life-care-planners/${state}/${city}/${slug}/#physician`,
       "name": provider.name,
       "jobTitle": "Physician Life Care Planner",

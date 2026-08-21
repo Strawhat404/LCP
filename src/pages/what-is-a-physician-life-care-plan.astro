@@ -2,28 +2,60 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What is a Physician Life Care Plan?",
+  "description": "A physician life care plan is a highly structured document that translates a catastrophically injured patient's medical history into an objective projection of future clinical and support needs over their remaining lifespan.",
+  "author": {
+    "@type": "Organization",
+    "name": "Physician Life Care Planning Directory"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Physician Life Care Planning Directory",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.mylifecareplanning.com/LCP-logo-transparent.png"
+    }
+  },
+  "datePublished": "2024-01-15T00:00:00Z",
+  "dateModified": "2026-08-11T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.mylifecareplanning.com/what-is-a-physician-life-care-plan/"
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".intro-definition"]
+  }
+});
 ---
 <BaseLayout
   title="What is a Physician Life Care Plan? — MyLifeCarePlanning.com"
   description="A physician life care plan is a highly structured document that translates a catastrophically injured patient's medical history into an objective projection of future clinical and support needs over their remaining lifespan."
+  canonical="https://www.mylifecareplanning.com/what-is-a-physician-life-care-plan/"
+  schema={articleSchema}
 >
   <Header />
   <main class="flex-1">
     <section class="bg-brand-900 text-white">
       <div class="page-container py-12">
         <h1 class="text-3xl sm:text-4xl font-bold">What Is a Physician Life Care Plan?</h1>
+        <p class="text-xs text-gray-400 mt-2 mb-1">Updated: August 2026</p>
         <p class="mt-3 text-brand-200 max-w-2xl">A highly structured, dynamic document that translates a catastrophically injured patient's medical history into an objective projection of future clinical and support needs.</p>
       </div>
     </section>
     <div class="page-container section-padding">
       <div class="max-w-3xl mx-auto prose prose-gray">
 
-        <p class="text-lg text-gray-600 leading-relaxed">A physician life care plan is a highly structured, dynamic document that translates a catastrophically injured or chronically ill patient's medical history into an objective projection of future clinical and support needs over their remaining lifespan. Unlike a standard medical chronology, which merely indexes historical care, a comprehensive life care plan acts as a financial and clinical roadmap.</p>
+        <p class="intro-definition text-lg text-gray-600 leading-relaxed">A physician life care plan is a highly structured, dynamic document that translates a catastrophically injured or chronically ill patient's medical history into an objective projection of future clinical and support needs over their remaining lifespan. Unlike a standard medical chronology, which merely indexes historical care, a comprehensive life care plan acts as a financial and clinical roadmap.</p>
 
         <p>It itemizes anticipated future costs across several standardized categories, including routine physician evaluations, diagnostic testing, therapeutic modalities, interventional procedures, potential surgical interventions, durable medical equipment (DME), home care, and chronic medications. Crucially, a physician-authored plan relies strictly on the independent, licensed clinical judgment of a medical doctor to determine the medical necessity, duration, and frequency of these future categories.</p>
 
         <h2 class="!text-2xl !font-bold !text-brand-900 !mt-8 !mb-4">Legal Admissibility and the Daubert Standard</h2>
-        <p>For legal and insurance stakeholders, the admissibility and credibility of a life care plan are paramount. Under Federal Rule of Evidence 702 and the federal <em>Daubert</em> standard, the trial court acts as a gatekeeper to ensure that expert testimony is both relevant and reliable. This judicial gatekeeping is a flexible, context-specific inquiry rather than a rigid, mandatory checklist.</p>
+        <p>For legal and insurance stakeholders, the admissibility and credibility of a life care plan are paramount. Under <a href="https://www.law.cornell.edu/rules/fre/rule_702" target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:text-brand-900 underline">Federal Rule of Evidence 702</a> and the federal <em>Daubert</em> standard, the trial court acts as a gatekeeper to ensure that expert testimony is both relevant and reliable. This judicial gatekeeping is a flexible, context-specific inquiry rather than a rigid, mandatory checklist.</p>
         <p>While courts may consider factors such as whether the methodology can be tested, whether it has been subjected to peer review, its known error rates, the existence of operational standards, and its general acceptance in the scientific community, the emphasis remains on the logical and scientific soundness of the expert's approach. A physician life care plan meets this standard by ensuring that every single cost category is directly tied to an objective diagnostic finding, clinical exam pattern, or consensus guideline.</p>
         <p>In a modern workflow, technology platforms serve as an evidence infrastructure layer that ingests raw medical files, normalizes unstructured records, and surfaces candidate findings — but the software never dictates the plan's outcomes.</p>
 
